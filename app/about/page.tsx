@@ -63,7 +63,7 @@ const SOURCES = [
   'Актуарная математика — Н.Л. Бауэрс и др., 2001',
   'World Health Organization — Life Tables for Kazakhstan',
   'Национальный банк РК — Нормативные акты по страхованию жизни',
-  'OpenAI GPT-4o — Модель для анализа и корректировки рисков',
+  'OpenAI GPT-4o mini — Модель для анализа и корректировки рисков',
 ];
 
 export default function AboutPage() {
@@ -176,7 +176,7 @@ export default function AboutPage() {
             </div>
             <div className="glass-card p-6 space-y-4">
               <p className="text-slate-300 leading-relaxed">
-                Платформа интегрирована с моделью <span className="text-emerald-400 font-semibold">GPT-4o</span> от OpenAI.
+                Платформа интегрирована с моделью <span className="text-emerald-400 font-semibold">GPT-4o mini</span> от OpenAI.
                 Нейросеть выполняет роль актуария, который:
               </p>
               <ul className="space-y-3 text-slate-300">
