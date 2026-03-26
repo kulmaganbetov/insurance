@@ -1,189 +1,159 @@
 import { NextRequest, NextResponse } from 'next/server';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
 
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
 
-    const doc = new jsPDF();
-
-    // Header
-    doc.setFillColor(15, 23, 42);
-    doc.rect(0, 0, 210, 40, 'F');
-
-    doc.setTextColor(16, 185, 129);
-    doc.setFontSize(22);
-    doc.text('LifeGuard KZ', 20, 20);
-
-    doc.setTextColor(148, 163, 184);
-    doc.setFontSize(10);
-    doc.text('AI-platforma ocenki riskov strahovaniya zhizni', 20, 28);
-
-    doc.setTextColor(100, 116, 139);
-    doc.setFontSize(8);
-    doc.text(`Otchyot sformirovan: ${new Date().toLocaleString('ru-RU')}`, 20, 35);
-
-    let y = 50;
-
-    // Risk level
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(14);
-    doc.text('Uroven riska', 20, y);
-    y += 8;
-
-    const riskLevel = data.risk_level || 'N/A';
     const riskScore = data.risk_score || 0;
+    const riskLevel = data.risk_level || 'Неизвестно';
+    const annualPremium = (data.annual_premium || 0).toLocaleString('ru-RU');
+    const monthlyPremium = (data.monthly_premium || 0).toLocaleString('ru-RU');
+    const oneTimePremium = (data.one_time_premium || 0).toLocaleString('ru-RU');
 
-    doc.setFontSize(24);
-    if (riskScore <= 25) doc.setTextColor(16, 185, 129);
-    else if (riskScore <= 50) doc.setTextColor(245, 158, 11);
-    else if (riskScore <= 75) doc.setTextColor(249, 115, 22);
-    else doc.setTextColor(239, 68, 68);
+    const riskColor = riskScore <= 25 ? '#10B981'
+      : riskScore <= 50 ? '#F59E0B'
+      : riskScore <= 75 ? '#F97316'
+      : '#EF4444';
 
-    doc.text(`${riskScore} - ${riskLevel}`, 20, y + 5);
-    y += 20;
+    const actuarial = data.actuarial || {};
+    const factors = data.risk_factors || [];
+    const recommendations = data.recommendations || [];
+    const lifeExp = data.life_expectancy || {};
 
-    // Premium section
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(14);
-    doc.text('Strahovaya premiya', 20, y);
-    y += 8;
+    // Generate HTML-based PDF using a printable HTML document
+    const html = `<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>LifeGuard KZ - Отчёт</title>
+<style>
+  @page { margin: 20mm; size: A4; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', 'DejaVu Sans', Arial, sans-serif; color: #1e293b; font-size: 11pt; line-height: 1.5; }
+  .header { background: linear-gradient(135deg, #0F172A, #1E293B); color: white; padding: 24px 32px; margin: -20mm -20mm 20px -20mm; width: calc(100% + 40mm); }
+  .header h1 { font-size: 22pt; color: #10B981; margin-bottom: 4px; }
+  .header p { color: #94A3B8; font-size: 10pt; }
+  .header .date { color: #64748B; font-size: 8pt; margin-top: 8px; }
+  h2 { font-size: 14pt; color: #0F172A; margin: 20px 0 10px 0; border-bottom: 2px solid #10B981; padding-bottom: 4px; }
+  .risk-badge { display: inline-block; padding: 8px 24px; border-radius: 12px; font-size: 20pt; font-weight: bold; color: white; margin: 8px 0 16px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 20px 0; }
+  th { background: #0F172A; color: #10B981; text-align: left; padding: 8px 12px; font-size: 10pt; }
+  td { padding: 6px 12px; border-bottom: 1px solid #e2e8f0; font-size: 10pt; }
+  tr:nth-child(even) td { background: #f8fafc; }
+  .factor-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #f1f5f9; }
+  .factor-name { color: #475569; }
+  .factor-adj { font-weight: 600; }
+  .factor-adj.positive { color: #EF4444; }
+  .factor-adj.negative { color: #10B981; }
+  .rec-item { padding: 8px 12px; margin: 4px 0; background: #f0fdf4; border-left: 3px solid #10B981; border-radius: 0 8px 8px 0; font-size: 10pt; }
+  .premium-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 10px 0 20px 0; }
+  .premium-card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; }
+  .premium-card .label { color: #64748B; font-size: 9pt; }
+  .premium-card .value { font-size: 16pt; font-weight: bold; color: #0F172A; }
+  .premium-card.main { border-color: #10B981; background: #f0fdf4; }
+  .premium-card.main .value { color: #10B981; }
+  .le-bar { margin: 10px 0 20px 0; padding: 12px; background: #f8fafc; border-radius: 8px; }
+  .disclaimer { margin-top: 30px; padding: 16px; background: #fefce8; border: 1px solid #fde68a; border-radius: 8px; font-size: 8pt; color: #92400e; }
+  .footer { margin-top: 20px; text-align: center; font-size: 8pt; color: #94A3B8; }
+</style>
+</head>
+<body>
 
-    const premiumData = [
-      ['Godovaya premiya', `${(data.annual_premium || 0).toLocaleString('ru-RU')} tg`],
-      ['Ezhemesyachnaya premiya', `${(data.monthly_premium || 0).toLocaleString('ru-RU')} tg`],
-      ['Edinovremennaya premiya', `${(data.one_time_premium || 0).toLocaleString('ru-RU')} tg`],
-    ];
+<div class="header">
+  <h1>LifeGuard KZ</h1>
+  <p>AI-платформа оценки рисков страхования жизни</p>
+  <div class="date">Отчёт сформирован: ${new Date().toLocaleString('ru-RU', { dateStyle: 'long', timeStyle: 'short' })}</div>
+</div>
 
-    autoTable(doc, {
-      startY: y,
-      head: [['Parametr', 'Znachenie']],
-      body: premiumData,
-      theme: 'grid',
-      headStyles: { fillColor: [16, 185, 129] },
-      styles: { fontSize: 10 },
-    });
+<h2>Оценка риска</h2>
+<div>
+  <span class="risk-badge" style="background: ${riskColor}">${riskScore} — ${riskLevel}</span>
+</div>
 
-    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
+<h2>Страховая премия</h2>
+<div class="premium-grid">
+  <div class="premium-card main">
+    <div class="label">Годовая премия</div>
+    <div class="value">${annualPremium} ₸</div>
+  </div>
+  <div class="premium-card">
+    <div class="label">Ежемесячная</div>
+    <div class="value">${monthlyPremium} ₸</div>
+  </div>
+  <div class="premium-card">
+    <div class="label">Единовременная</div>
+    <div class="value">${oneTimePremium} ₸</div>
+  </div>
+</div>
 
-    // Actuarial calculations
-    if (data.actuarial) {
-      doc.setFontSize(14);
-      doc.text('Aktuarnye raschyoty', 20, y);
-      y += 8;
+<h2>Актуарные расчёты</h2>
+<table>
+  <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+  <tbody>
+    <tr><td>lx (живущие на возраст x)</td><td>${actuarial.lx?.toLocaleString('ru-RU') || '—'}</td></tr>
+    <tr><td>lx+n (живущие на возраст x+n)</td><td>${actuarial.lx_n?.toLocaleString('ru-RU') || '—'}</td></tr>
+    <tr><td>Dx (дисконтированные живущие)</td><td>${typeof actuarial.Dx === 'number' ? actuarial.Dx.toLocaleString('ru-RU', { maximumFractionDigits: 2 }) : '—'}</td></tr>
+    <tr><td>Dx+n</td><td>${typeof actuarial.Dx_n === 'number' ? actuarial.Dx_n.toLocaleString('ru-RU', { maximumFractionDigits: 2 }) : '—'}</td></tr>
+    <tr><td>Nx (коммутационное число)</td><td>${typeof actuarial.Nx === 'number' ? actuarial.Nx.toLocaleString('ru-RU', { maximumFractionDigits: 2 }) : '—'}</td></tr>
+    <tr><td>Mx (коммутационное число)</td><td>${typeof actuarial.Mx === 'number' ? actuarial.Mx.toLocaleString('ru-RU', { maximumFractionDigits: 2 }) : '—'}</td></tr>
+    <tr><td>Базовый нетто-тариф</td><td>${typeof actuarial.base_net_tariff === 'number' ? actuarial.base_net_tariff.toFixed(6) : '—'}</td></tr>
+  </tbody>
+</table>
 
-      const actuarialData = [
-        ['lx', String(data.actuarial.lx || 0)],
-        ['lx+n', String(data.actuarial.lx_n || 0)],
-        ['Dx', String(data.actuarial.Dx || 0)],
-        ['Dx+n', String(data.actuarial.Dx_n || 0)],
-        ['Nx', String(data.actuarial.Nx || 0)],
-        ['Mx', String(data.actuarial.Mx || 0)],
-        ['Bazovyj netto-tarif', String(data.actuarial.base_net_tariff || 0)],
-      ];
+${factors.length > 0 ? `
+<h2>Факторы риска</h2>
+<table>
+  <thead><tr><th>Фактор</th><th>Поправка</th></tr></thead>
+  <tbody>
+    ${factors.map((f: { factor: string; adjustment: number }) => {
+      const adj = f.adjustment;
+      const adjStr = adj > 0 ? `+${adj}%` : adj < 0 ? `${adj}%` : '0%';
+      const color = adj > 0 ? '#EF4444' : adj < 0 ? '#10B981' : '#64748B';
+      return `<tr><td>${f.factor}</td><td style="color: ${color}; font-weight: 600">${adjStr}</td></tr>`;
+    }).join('')}
+  </tbody>
+</table>
+` : ''}
 
-      autoTable(doc, {
-        startY: y,
-        head: [['Parametr', 'Znachenie']],
-        body: actuarialData,
-        theme: 'grid',
-        headStyles: { fillColor: [59, 130, 246] },
-        styles: { fontSize: 10 },
-      });
+${lifeExp.personal_estimate ? `
+<h2>Ожидаемая продолжительность жизни</h2>
+<div class="le-bar">
+  <p><strong>Личный прогноз:</strong> ${lifeExp.personal_estimate} лет</p>
+  <p><strong>Среднее по полу:</strong> ${lifeExp.gender_average} лет</p>
+  <p><strong>Среднее по Казахстану:</strong> ${lifeExp.country_average} лет</p>
+</div>
+` : ''}
 
-      y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
-    }
+${recommendations.length > 0 ? `
+<h2>Рекомендации</h2>
+${recommendations.map((r: string, i: number) => `<div class="rec-item">${i + 1}. ${r}</div>`).join('')}
+` : ''}
 
-    // Risk factors
-    if (data.risk_factors && data.risk_factors.length > 0) {
-      if (y > 230) {
-        doc.addPage();
-        y = 20;
-      }
+<div class="disclaimer">
+  <strong>Отказ от ответственности:</strong> Результаты расчётов носят исключительно информационный характер
+  и не являются офертой или рекомендацией к заключению договора страхования. Для получения точных условий
+  обратитесь в лицензированную страховую компанию Республики Казахстан. Платформа использует модели ИИ,
+  которые могут содержать неточности.
+</div>
 
-      doc.setFontSize(14);
-      doc.text('Faktory riska', 20, y);
-      y += 8;
+<div class="footer">
+  &copy; ${new Date().getFullYear()} LifeGuard KZ — AI-платформа оценки рисков страхования жизни
+</div>
 
-      const factorData = data.risk_factors.map((f: { factor: string; adjustment: number | string }) => [
-        f.factor,
-        typeof f.adjustment === 'number' ? `${f.adjustment > 0 ? '+' : ''}${f.adjustment}%` : String(f.adjustment),
-      ]);
+</body>
+</html>`;
 
-      autoTable(doc, {
-        startY: y,
-        head: [['Faktor', 'Popravka']],
-        body: factorData,
-        theme: 'grid',
-        headStyles: { fillColor: [249, 115, 22] },
-        styles: { fontSize: 10 },
-      });
-
-      y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
-    }
-
-    // Recommendations
-    if (data.recommendations && data.recommendations.length > 0) {
-      if (y > 240) {
-        doc.addPage();
-        y = 20;
-      }
-
-      doc.setFontSize(14);
-      doc.text('Rekomendacii', 20, y);
-      y += 8;
-
-      doc.setFontSize(10);
-      data.recommendations.forEach((rec: string, i: number) => {
-        if (y > 270) {
-          doc.addPage();
-          y = 20;
-        }
-        doc.text(`${i + 1}. ${rec}`, 20, y);
-        y += 7;
-      });
-    }
-
-    // Disclaimer
-    if (y > 250) {
-      doc.addPage();
-      y = 20;
-    } else {
-      y += 10;
-    }
-
-    doc.setDrawColor(200, 200, 200);
-    doc.line(20, y, 190, y);
-    y += 8;
-
-    doc.setTextColor(150, 150, 150);
-    doc.setFontSize(7);
-    doc.text(
-      'Raschyot nosit isklyuchitelno informacionnyj harakter i ne yavlyaetsya ofertoj.',
-      20,
-      y
-    );
-    doc.text(
-      'Dlya polucheniya tochnyh uslovij obratites v licenzirovannuyu strahovuyu kompaniyu RK.',
-      20,
-      y + 5
-    );
-    doc.text('LifeGuard KZ - AI-platforma ocenki riskov strahovaniya zhizni', 20, y + 10);
-
-    const pdfBuffer = doc.output('arraybuffer');
-
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(html, {
       status: 200,
       headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="lifeguard-kz-report.pdf"',
+        'Content-Type': 'text/html; charset=utf-8',
+        'Content-Disposition': 'attachment; filename="lifeguard-kz-report.html"',
       },
     });
   } catch (error) {
-    console.error('PDF export error:', error);
+    console.error('Export error:', error);
     return NextResponse.json(
-      { error: 'Oshibka pri generacii PDF' },
+      { error: 'Ошибка при генерации отчёта' },
       { status: 500 }
     );
   }

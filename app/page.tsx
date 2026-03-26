@@ -231,7 +231,7 @@ export default function HomePage() {
             <div className="grid md:grid-cols-4 gap-6 mb-16">
               {[
                 { icon: FileText, step: '01', title: 'Анкета', desc: 'Заполните анкету за 2 минуты', color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
-                { icon: Brain, step: '02', title: 'AI-анализ', desc: 'GPT-4o анализирует факторы', color: 'text-blue-400', bg: 'bg-blue-500/10' },
+                { icon: Brain, step: '02', title: 'AI-анализ', desc: 'GPT-4o mini анализирует факторы', color: 'text-blue-400', bg: 'bg-blue-500/10' },
                 { icon: Calculator, step: '03', title: 'Актуарный расчёт', desc: 'Формулы и таблицы КЗ', color: 'text-purple-400', bg: 'bg-purple-500/10' },
                 { icon: Shield, step: '04', title: 'Персональный тариф', desc: 'Индивидуальная премия', color: 'text-yellow-400', bg: 'bg-yellow-500/10' },
               ].map((item, i) => (
@@ -433,7 +433,7 @@ export default function HomePage() {
             <motion.div variants={fadeInUp} transition={{ duration: 0.5 }}>
               <div className="flex flex-wrap justify-center gap-4">
                 {[
-                  { label: 'GPT-4o', icon: Brain },
+                  { label: 'GPT-4o mini', icon: Brain },
                   { label: 'Next.js 14', icon: Zap },
                   { label: 'Vercel', icon: Shield },
                   { label: 'Актуарные формулы', icon: Calculator },

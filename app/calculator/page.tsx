@@ -127,28 +127,38 @@ export default function CalculatorPage() {
       const result = await res.json();
 
       // Normalize result for display
+      const annualPremium = result.premium?.annual_premium_tenge ?? 0;
+      const K = result.risk_calculation?.total_adjustment_coefficient ?? 1;
+      // Traditional premium = premium without risk adjustments
+      const traditionalPremium = K > 0 ? Math.round(annualPremium / K) : annualPremium;
+
       const displayData = {
         risk_score: result.risk_calculation?.risk_score ?? 50,
         risk_level: result.risk_calculation?.risk_level ?? 'Средний',
-        annual_premium: result.premium?.annual_premium_tenge ?? 0,
-        monthly_premium: result.premium?.monthly_premium_tenge ?? 0,
-        one_time_premium: result.premium?.one_time_premium_tenge ?? 0,
-        traditional_premium: result.premium?.annual_premium_tenge
-          ? Math.round(result.premium.annual_premium_tenge / (result.risk_calculation?.total_adjustment_coefficient ?? 1))
-          : 0,
-        ai_adjusted_premium: result.premium?.annual_premium_tenge ?? 0,
+        annual_premium: annualPremium,
+        monthly_premium: result.premium?.monthly_premium_tenge ?? Math.round(annualPremium / 12),
+        one_time_premium: result.premium?.one_time_premium_tenge ?? Math.round(annualPremium * 10),
+        traditional_premium: traditionalPremium,
+        ai_adjusted_premium: annualPremium,
         life_expectancy: {
           personal_estimate: result.life_expectancy_estimate?.personal_adjusted ?? 70,
           gender_average: result.life_expectancy_estimate?.gender_adjusted ?? 75,
           country_average: result.life_expectancy_estimate?.base_kazakhstan ?? 75.44,
         },
-        recommendations: result.recommendations ?? [],
-        risk_factors: (result.risk_factors ?? []).map((f: { factor: string; adjustment: string | number }) => ({
-          factor: f.factor,
-          adjustment: typeof f.adjustment === 'string'
-            ? parseFloat(f.adjustment.replace(/[^-\d.]/g, '')) || 0
-            : f.adjustment,
-        })),
+        recommendations: result.recommendations ?? [
+          'Рекомендуется ежегодное медицинское обследование',
+          'Поддерживайте здоровый образ жизни для снижения рисков',
+          'Рассмотрите страхование от критических заболеваний',
+        ],
+        risk_factors: (result.risk_factors ?? []).map((f: { factor: string; adjustment: string | number }) => {
+          let adj: number;
+          if (typeof f.adjustment === 'string') {
+            adj = parseFloat(f.adjustment.replace(/[^-\d.]/g, '')) || 0;
+          } else {
+            adj = f.adjustment;
+          }
+          return { factor: f.factor, adjustment: adj };
+        }),
         actuarial: {
           lx: result.actuarial_calculation?.lx ?? 0,
           lx_n: result.actuarial_calculation?.lx_n ?? 0,

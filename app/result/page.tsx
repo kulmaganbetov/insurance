@@ -76,13 +76,25 @@ export default function ResultPage() {
         body: JSON.stringify(data),
       });
       if (res.ok) {
-        const blob = await res.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'insurance-report.pdf';
-        a.click();
-        window.URL.revokeObjectURL(url);
+        const html = await res.text();
+        // Open HTML in new window for printing as PDF
+        const printWindow = window.open('', '_blank');
+        if (printWindow) {
+          printWindow.document.write(html);
+          printWindow.document.close();
+          setTimeout(() => {
+            printWindow.print();
+          }, 500);
+        } else {
+          // Fallback: download as HTML file
+          const blob = new Blob([html], { type: 'text/html; charset=utf-8' });
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'lifeguard-kz-report.html';
+          a.click();
+          window.URL.revokeObjectURL(url);
+        }
       }
     } catch {
       // handle error silently
