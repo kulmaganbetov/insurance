@@ -6,13 +6,13 @@ import { Shield, Clock, Banknote, Target } from 'lucide-react';
 import { INSURANCE_TYPES } from '@/lib/constants';
 
 const GOAL_OPTIONS = [
-  { value: 'savings', label: 'Накопление' },
-  { value: 'family_protection', label: 'Защита семьи' },
-  { value: 'pension', label: 'Пенсия' },
+  { value: 'savings', label: 'Жинақтау' },
+  { value: 'family_protection', label: 'Отбасын қорғау' },
+  { value: 'pension', label: 'Зейнет' },
 ] as const;
 
 function formatTenge(value: number): string {
-  return new Intl.NumberFormat('ru-RU').format(value) + ' ₸';
+  return new Intl.NumberFormat('kk-KZ').format(value) + ' ₸';
 }
 
 function formatUsd(tenge: number): string {
@@ -44,7 +44,7 @@ export default function StepFour() {
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-4">
           <Shield className="w-4 h-4 text-emerald-400" />
-          Тип страхования
+          Сақтандыру түрі
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {INSURANCE_TYPES.map((type) => (
@@ -81,9 +81,9 @@ export default function StepFour() {
         <label className="flex items-center justify-between text-sm font-medium text-gray-300 mb-3">
           <span className="flex items-center gap-2">
             <Clock className="w-4 h-4 text-emerald-400" />
-            Срок страхования
+            Сақтандыру мерзімі
           </span>
-          <span className="text-2xl font-bold text-emerald-400">{term} лет</span>
+          <span className="text-2xl font-bold text-emerald-400">{term} жыл</span>
         </label>
         <input
           type="range"
@@ -95,8 +95,8 @@ export default function StepFour() {
           className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
         />
         <div className="flex justify-between text-xs text-gray-500 mt-1">
-          <span>5 лет</span>
-          <span>40 лет</span>
+          <span>5 жыл</span>
+          <span>40 жыл</span>
         </div>
         {errors.term && (
           <p className="text-red-400 text-sm mt-1">{errors.term.message as string}</p>
@@ -108,7 +108,7 @@ export default function StepFour() {
         <label className="flex items-center justify-between text-sm font-medium text-gray-300 mb-1">
           <span className="flex items-center gap-2">
             <Banknote className="w-4 h-4 text-emerald-400" />
-            Страховая сумма
+            Сақтандыру сомасы
           </span>
         </label>
         <div className="flex items-baseline justify-between mb-3">
@@ -137,7 +137,7 @@ export default function StepFour() {
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
           <Target className="w-4 h-4 text-emerald-400" />
-          Цель страхования
+          Сақтандыру мақсаты
         </label>
         <div className="grid grid-cols-3 gap-3">
           {GOAL_OPTIONS.map((opt) => (

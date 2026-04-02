@@ -130,10 +130,10 @@ export default function ResultPage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-white">
-              Результаты расчёта
+              Есептеу нәтижелері
             </h1>
             <p className="text-slate-400 mt-1">
-              Индивидуальный страховой анализ
+              Жеке сақтандыру талдауы
             </p>
           </div>
           <div className="flex gap-3">
@@ -142,7 +142,7 @@ export default function ResultPage() {
               className="flex items-center gap-2 px-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-white rounded-xl transition-colors text-sm font-medium"
             >
               <ArrowLeft className="w-4 h-4" />
-              Новый расчёт
+              Жаңа есептеу
             </Link>
             <button
               onClick={handleDownloadPDF}
@@ -150,7 +150,7 @@ export default function ResultPage() {
               className="flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:bg-emerald-800 disabled:opacity-60 text-white rounded-xl transition-colors text-sm font-medium"
             >
               <Download className="w-4 h-4" />
-              {downloading ? 'Загрузка...' : 'Скачать PDF'}
+              {downloading ? 'Жүктелуде...' : 'PDF жүктеу'}
             </button>
           </div>
         </div>

@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
           ${String(data.insuranceType || data.client_summary?.insurance_type || '')},
           ${Number(data.insuranceTerm || data.client_summary?.insurance_term || 0)},
           ${Number(data.insuranceSum || data.client_summary?.insurance_sum || 0)},
-          ${String(data.risk_calculation?.risk_level || data.riskLevel || 'Неизвестно')},
+          ${String(data.risk_calculation?.risk_level || data.riskLevel || 'Белгісіз')},
           ${Number(data.risk_calculation?.risk_score || data.riskScore || 0)},
           ${Number(data.premium?.annual_premium_tenge || data.annualPremium || 0)},
           ${Number(data.premium?.monthly_premium_tenge || data.monthlyPremium || 0)},
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Save result API error:', error);
     return NextResponse.json(
-      { error: 'Ошибка при сохранении результата' },
+      { error: 'Нәтижені сақтау қатесі' },
       { status: 500 }
     );
   }

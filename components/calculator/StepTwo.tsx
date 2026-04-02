@@ -14,12 +14,12 @@ import {
 
 const DISEASES = [
   { id: 'hypertension', label: 'Гипертония', icon: HeartPulse },
-  { id: 'diabetes', label: 'Сахарный диабет 2 типа', icon: Droplets },
-  { id: 'cardiovascular', label: 'Сердечно-сосудистые заболевания', icon: Heart },
-  { id: 'heart_attack_stroke', label: 'Перенесённый инфаркт или инсульт', icon: Activity },
-  { id: 'oncology', label: 'Онкология в анамнезе', icon: Ribbon },
-  { id: 'chronic_lung', label: 'Хронические болезни лёгких', icon: Wind },
-  { id: 'chronic_kidney', label: 'Хроническая почечная недостаточность', icon: CircleDot },
+  { id: 'diabetes', label: '2-типті қант диабеті', icon: Droplets },
+  { id: 'cardiovascular', label: 'Жүрек-қантамыр аурулары', icon: Heart },
+  { id: 'heart_attack_stroke', label: 'Инфаркт немесе инсульт болған', icon: Activity },
+  { id: 'oncology', label: 'Анамнездегі онкология', icon: Ribbon },
+  { id: 'chronic_lung', label: 'Өкпенің созылмалы аурулары', icon: Wind },
+  { id: 'chronic_kidney', label: 'Созылмалы бүйрек жеткіліксіздігі', icon: CircleDot },
 ] as const;
 
 export default function StepTwo() {
@@ -54,7 +54,7 @@ export default function StepTwo() {
       {/* Diseases */}
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-4">
-          Хронические заболевания
+          Созылмалы аурулар
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {DISEASES.map((d) => {
@@ -121,11 +121,11 @@ export default function StepTwo() {
       {/* Blood pressure */}
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-3">
-          Артериальное давление (мм рт.ст.)
+          Артериялық қысым (мм сын.бағ.)
         </label>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="text-xs text-gray-500 mb-1 block">Систолическое (верхнее)</label>
+            <label className="text-xs text-gray-500 mb-1 block">Систолалық (жоғарғы)</label>
             <input
               type="number"
               placeholder="120"
@@ -137,7 +137,7 @@ export default function StepTwo() {
             )}
           </div>
           <div>
-            <label className="text-xs text-gray-500 mb-1 block">Диастолическое (нижнее)</label>
+            <label className="text-xs text-gray-500 mb-1 block">Диастолалық (төменгі)</label>
             <input
               type="number"
               placeholder="80"

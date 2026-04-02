@@ -25,9 +25,9 @@ export default function ComparisonChart({
 
   const data = [
     {
-      name: 'Премия',
-      'Традиционный актуарный': traditional_premium,
-      'AI-скорректированный': ai_adjusted_premium,
+      name: 'Сыйлықақы',
+      'Дәстүрлі актуарлық': traditional_premium,
+      'AI-түзетілген': ai_adjusted_premium,
     },
   ];
 
@@ -35,7 +35,7 @@ export default function ComparisonChart({
     <div className="bg-[#1E293B] rounded-2xl p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-white text-lg font-semibold">
-          Сравнение расчётов
+          Есептеулерді салыстыру
         </h3>
         <span
           className={`text-sm font-medium px-3 py-1 rounded-full ${
@@ -75,18 +75,18 @@ export default function ComparisonChart({
                 color: '#F1F5F9',
               }}
               formatter={(value: number) => [
-                `${value.toLocaleString('ru-RU')} ₸`,
+                `${value.toLocaleString('kk-KZ')} ₸`,
               ]}
               labelStyle={{ color: '#94A3B8' }}
             />
             <Bar
-              dataKey="Традиционный актуарный"
+              dataKey="Дәстүрлі актуарлық"
               fill="#3B82F6"
               radius={[6, 6, 0, 0]}
               maxBarSize={80}
             />
             <Bar
-              dataKey="AI-скорректированный"
+              dataKey="AI-түзетілген"
               fill="#10B981"
               radius={[6, 6, 0, 0]}
               maxBarSize={80}
@@ -98,11 +98,11 @@ export default function ComparisonChart({
       <div className="flex justify-center gap-6 mt-4 text-sm">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-sm bg-blue-500" />
-          <span className="text-slate-400">Традиционный актуарный</span>
+          <span className="text-slate-400">Дәстүрлі актуарлық</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-sm bg-emerald-500" />
-          <span className="text-slate-400">AI-скорректированный</span>
+          <span className="text-slate-400">AI-түзетілген</span>
         </div>
       </div>
     </div>

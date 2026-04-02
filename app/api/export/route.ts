@@ -5,10 +5,10 @@ export async function POST(request: NextRequest) {
     const data = await request.json();
 
     const riskScore = data.risk_score || 0;
-    const riskLevel = data.risk_level || 'Неизвестно';
-    const annualPremium = (data.annual_premium || 0).toLocaleString('ru-RU');
-    const monthlyPremium = (data.monthly_premium || 0).toLocaleString('ru-RU');
-    const oneTimePremium = (data.one_time_premium || 0).toLocaleString('ru-RU');
+    const riskLevel = data.risk_level || 'Белгісіз';
+    const annualPremium = (data.annual_premium || 0).toLocaleString('kk-KZ');
+    const monthlyPremium = (data.monthly_premium || 0).toLocaleString('kk-KZ');
+    const oneTimePremium = (data.one_time_premium || 0).toLocaleString('kk-KZ');
 
     const riskColor = riskScore <= 25 ? '#10B981'
       : riskScore <= 50 ? '#F59E0B'
@@ -22,10 +22,10 @@ export async function POST(request: NextRequest) {
 
     // Generate HTML-based PDF using a printable HTML document
     const html = `<!DOCTYPE html>
-<html lang="ru">
+<html lang="kk">
 <head>
 <meta charset="UTF-8">
-<title>LifeGuard KZ - Отчёт</title>
+<title>LifeGuard KZ - Есеп</title>
 <style>
   @page { margin: 20mm; size: A4; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -61,49 +61,49 @@ export async function POST(request: NextRequest) {
 
 <div class="header">
   <h1>LifeGuard KZ</h1>
-  <p>AI-платформа оценки рисков страхования жизни</p>
-  <div class="date">Отчёт сформирован: ${new Date().toLocaleString('ru-RU', { dateStyle: 'long', timeStyle: 'short' })}</div>
+  <p>Өмірді сақтандыру тәуекелдерін бағалау AI платформасы</p>
+  <div class="date">Есеп жасалған уақыты: ${new Date().toLocaleString('kk-KZ', { dateStyle: 'long', timeStyle: 'short' })}</div>
 </div>
 
-<h2>Оценка риска</h2>
+<h2>Тәуекел бағасы</h2>
 <div>
   <span class="risk-badge" style="background: ${riskColor}">${riskScore} — ${riskLevel}</span>
 </div>
 
-<h2>Страховая премия</h2>
+<h2>Сақтандыру сыйлықақысы</h2>
 <div class="premium-grid">
   <div class="premium-card main">
-    <div class="label">Годовая премия</div>
+    <div class="label">Жылдық сыйлықақы</div>
     <div class="value">${annualPremium} ₸</div>
   </div>
   <div class="premium-card">
-    <div class="label">Ежемесячная</div>
+    <div class="label">Айлық</div>
     <div class="value">${monthlyPremium} ₸</div>
   </div>
   <div class="premium-card">
-    <div class="label">Единовременная</div>
+    <div class="label">Біржолғы</div>
     <div class="value">${oneTimePremium} ₸</div>
   </div>
 </div>
 
-<h2>Актуарные расчёты</h2>
+<h2>Актуарлық есептеулер</h2>
 <table>
-  <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+  <thead><tr><th>Параметр</th><th>Мәні</th></tr></thead>
   <tbody>
-    <tr><td>lx (живущие на возраст x)</td><td>${actuarial.lx?.toLocaleString('ru-RU') || '—'}</td></tr>
-    <tr><td>lx+n (живущие на возраст x+n)</td><td>${actuarial.lx_n?.toLocaleString('ru-RU') || '—'}</td></tr>
-    <tr><td>Dx (дисконтированные живущие)</td><td>${typeof actuarial.Dx === 'number' ? actuarial.Dx.toLocaleString('ru-RU', { maximumFractionDigits: 2 }) : '—'}</td></tr>
-    <tr><td>Dx+n</td><td>${typeof actuarial.Dx_n === 'number' ? actuarial.Dx_n.toLocaleString('ru-RU', { maximumFractionDigits: 2 }) : '—'}</td></tr>
-    <tr><td>Nx (коммутационное число)</td><td>${typeof actuarial.Nx === 'number' ? actuarial.Nx.toLocaleString('ru-RU', { maximumFractionDigits: 2 }) : '—'}</td></tr>
-    <tr><td>Mx (коммутационное число)</td><td>${typeof actuarial.Mx === 'number' ? actuarial.Mx.toLocaleString('ru-RU', { maximumFractionDigits: 2 }) : '—'}</td></tr>
-    <tr><td>Базовый нетто-тариф</td><td>${typeof actuarial.base_net_tariff === 'number' ? actuarial.base_net_tariff.toFixed(6) : '—'}</td></tr>
+    <tr><td>lx (жаста тірі қалғандар x)</td><td>${actuarial.lx?.toLocaleString('kk-KZ') || '—'}</td></tr>
+    <tr><td>lx+n (жаста тірі қалғандар x+n)</td><td>${actuarial.lx_n?.toLocaleString('kk-KZ') || '—'}</td></tr>
+    <tr><td>Dx (дисконтталған тірі қалғандар)</td><td>${typeof actuarial.Dx === 'number' ? actuarial.Dx.toLocaleString('kk-KZ', { maximumFractionDigits: 2 }) : '—'}</td></tr>
+    <tr><td>Dx+n</td><td>${typeof actuarial.Dx_n === 'number' ? actuarial.Dx_n.toLocaleString('kk-KZ', { maximumFractionDigits: 2 }) : '—'}</td></tr>
+    <tr><td>Nx (коммутациялық сан)</td><td>${typeof actuarial.Nx === 'number' ? actuarial.Nx.toLocaleString('kk-KZ', { maximumFractionDigits: 2 }) : '—'}</td></tr>
+    <tr><td>Mx (коммутациялық сан)</td><td>${typeof actuarial.Mx === 'number' ? actuarial.Mx.toLocaleString('kk-KZ', { maximumFractionDigits: 2 }) : '—'}</td></tr>
+    <tr><td>Базалық нетто-тариф</td><td>${typeof actuarial.base_net_tariff === 'number' ? actuarial.base_net_tariff.toFixed(6) : '—'}</td></tr>
   </tbody>
 </table>
 
 ${factors.length > 0 ? `
-<h2>Факторы риска</h2>
+<h2>Тәуекел факторлары</h2>
 <table>
-  <thead><tr><th>Фактор</th><th>Поправка</th></tr></thead>
+  <thead><tr><th>Фактор</th><th>Түзету</th></tr></thead>
   <tbody>
     ${factors.map((f: { factor: string; adjustment: number }) => {
       const adj = f.adjustment;
@@ -116,28 +116,28 @@ ${factors.length > 0 ? `
 ` : ''}
 
 ${lifeExp.personal_estimate ? `
-<h2>Ожидаемая продолжительность жизни</h2>
+<h2>Күтілетін өмір сүру ұзақтығы</h2>
 <div class="le-bar">
-  <p><strong>Личный прогноз:</strong> ${lifeExp.personal_estimate} лет</p>
-  <p><strong>Среднее по полу:</strong> ${lifeExp.gender_average} лет</p>
-  <p><strong>Среднее по Казахстану:</strong> ${lifeExp.country_average} лет</p>
+  <p><strong>Жеке болжам:</strong> ${lifeExp.personal_estimate} жас</p>
+  <p><strong>Жыныс бойынша орташа:</strong> ${lifeExp.gender_average} жас</p>
+  <p><strong>Қазақстан бойынша орташа:</strong> ${lifeExp.country_average} жас</p>
 </div>
 ` : ''}
 
 ${recommendations.length > 0 ? `
-<h2>Рекомендации</h2>
+<h2>Ұсыныстар</h2>
 ${recommendations.map((r: string, i: number) => `<div class="rec-item">${i + 1}. ${r}</div>`).join('')}
 ` : ''}
 
 <div class="disclaimer">
-  <strong>Отказ от ответственности:</strong> Результаты расчётов носят исключительно информационный характер
-  и не являются офертой или рекомендацией к заключению договора страхования. Для получения точных условий
-  обратитесь в лицензированную страховую компанию Республики Казахстан. Платформа использует модели ИИ,
-  которые могут содержать неточности.
+  <strong>Жауапкершіліктен бас тарту:</strong> Есептеу нәтижелері тек ақпараттық сипатқа ие
+  және сақтандыру шартын жасасуға оферта немесе ұсыныс болып табылмайды. Нақты талаптарды алу үшін
+  Қазақстан Республикасының лицензияланған сақтандыру компаниясына жүгініңіз. Платформа AI модельдерін қолданады,
+  сондықтан кейбір дәлсіздіктер болуы мүмкін.
 </div>
 
 <div class="footer">
-  &copy; ${new Date().getFullYear()} LifeGuard KZ — AI-платформа оценки рисков страхования жизни
+  &copy; ${new Date().getFullYear()} LifeGuard KZ — Өмірді сақтандыру тәуекелдерін бағалау AI платформасы
 </div>
 
 </body>
@@ -153,7 +153,7 @@ ${recommendations.map((r: string, i: number) => `<div class="rec-item">${i + 1}.
   } catch (error) {
     console.error('Export error:', error);
     return NextResponse.json(
-      { error: 'Ошибка при генерации отчёта' },
+      { error: 'Есепті қалыптастыру қатесі' },
       { status: 500 }
     );
   }
