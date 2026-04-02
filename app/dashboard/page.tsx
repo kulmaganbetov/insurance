@@ -41,10 +41,10 @@ function StatCard({ icon: Icon, label, value, color }: {
 
 function getRiskBadgeClass(level: string): string {
   switch (level) {
-    case 'Низкий': return 'bg-emerald-500/20 text-emerald-400';
-    case 'Средний': return 'bg-yellow-500/20 text-yellow-400';
-    case 'Высокий': return 'bg-orange-500/20 text-orange-400';
-    case 'Очень высокий': return 'bg-red-500/20 text-red-400';
+    case 'Төмен': return 'bg-emerald-500/20 text-emerald-400';
+    case 'Орташа': return 'bg-yellow-500/20 text-yellow-400';
+    case 'Жоғары': return 'bg-orange-500/20 text-orange-400';
+    case 'Өте жоғары': return 'bg-red-500/20 text-red-400';
     default: return 'bg-slate-500/20 text-slate-400';
   }
 }
@@ -90,33 +90,33 @@ export default function DashboardPage() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-white">Аналитика</h1>
-          <p className="text-slate-400 mt-1">Дашборд для страховой компании</p>
+          <p className="text-slate-400 mt-1">Сақтандыру компаниясына арналған панель</p>
         </div>
 
         {/* Stat cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <StatCard
             icon={BarChart3}
-            label="Всего расчётов"
-            value={data.totalCalculations.toLocaleString('ru-RU')}
+            label="Барлық есептеулер"
+            value={data.totalCalculations.toLocaleString('kk-KZ')}
             color="bg-blue-500/20 text-blue-400"
           />
           <StatCard
             icon={AlertTriangle}
-            label="Высокий риск"
+            label="Жоғары тәуекел"
             value={`${data.highRisk}%`}
             color="bg-red-500/20 text-red-400"
           />
           <StatCard
             icon={Heart}
-            label="Низкий риск"
+            label="Төмен тәуекел"
             value={`${data.lowRisk}%`}
             color="bg-emerald-500/20 text-emerald-400"
           />
           <StatCard
             icon={Banknote}
-            label="Средняя премия"
-            value={`${data.avgPremium.toLocaleString('ru-RU')} ₸`}
+            label="Орташа сыйлықақы"
+            value={`${data.avgPremium.toLocaleString('kk-KZ')} ₸`}
             color="bg-yellow-500/20 text-yellow-400"
           />
         </div>
@@ -125,7 +125,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Daily line chart */}
           <div className="bg-[#1E293B] rounded-2xl p-6">
-            <h3 className="text-white text-lg font-semibold mb-4">Расчёты за 30 дней</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">Соңғы 30 күндегі есептеулер</h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={data.dailyData}>
@@ -144,7 +144,7 @@ export default function DashboardPage() {
                     contentStyle={{ backgroundColor: '#1E293B', border: '1px solid #334155', borderRadius: '8px', color: '#F1F5F9' }}
                     labelStyle={{ color: '#94A3B8' }}
                   />
-                  <Line type="monotone" dataKey="calculations" stroke="#10B981" strokeWidth={2} dot={false} name="Расчётов" />
+                  <Line type="monotone" dataKey="calculations" stroke="#10B981" strokeWidth={2} dot={false} name="Есептеу" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -152,7 +152,7 @@ export default function DashboardPage() {
 
           {/* Risk distribution pie */}
           <div className="bg-[#1E293B] rounded-2xl p-6">
-            <h3 className="text-white text-lg font-semibold mb-4">Распределение рисков</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">Тәуекелдердің таралуы</h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -184,7 +184,7 @@ export default function DashboardPage() {
 
           {/* Age distribution bar */}
           <div className="bg-[#1E293B] rounded-2xl p-6">
-            <h3 className="text-white text-lg font-semibold mb-4">Премия по возрастным группам</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">Жас топтары бойынша сыйлықақы</h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={avgPremiumByAge}>
@@ -197,9 +197,9 @@ export default function DashboardPage() {
                   />
                   <Tooltip
                     contentStyle={{ backgroundColor: '#1E293B', border: '1px solid #334155', borderRadius: '8px', color: '#F1F5F9' }}
-                    formatter={(value: number) => [`${value.toLocaleString('ru-RU')} ₸`, 'Ср. премия']}
+                    formatter={(value: number) => [`${value.toLocaleString('kk-KZ')} ₸`, 'Орташа сыйлықақы']}
                   />
-                  <Bar dataKey="avgPremium" fill="#10B981" radius={[6, 6, 0, 0]} name="Ср. премия" />
+                  <Bar dataKey="avgPremium" fill="#10B981" radius={[6, 6, 0, 0]} name="Орташа сыйлықақы" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -207,7 +207,7 @@ export default function DashboardPage() {
 
           {/* Top factors */}
           <div className="bg-[#1E293B] rounded-2xl p-6">
-            <h3 className="text-white text-lg font-semibold mb-4">Топ факторов риска</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">Топ тәуекел факторлары</h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={data.topFactors.slice(0, 5)} layout="vertical">
@@ -222,9 +222,9 @@ export default function DashboardPage() {
                   />
                   <Tooltip
                     contentStyle={{ backgroundColor: '#1E293B', border: '1px solid #334155', borderRadius: '8px', color: '#F1F5F9' }}
-                    formatter={(value: number) => [value, 'Случаев']}
+                    formatter={(value: number) => [value, 'Жағдай']}
                   />
-                  <Bar dataKey="occurrences" fill="#F59E0B" radius={[0, 6, 6, 0]} name="Случаев" />
+                  <Bar dataKey="occurrences" fill="#F59E0B" radius={[0, 6, 6, 0]} name="Жағдай" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -233,12 +233,12 @@ export default function DashboardPage() {
 
         {/* Recent calculations table */}
         <div className="bg-[#1E293B] rounded-2xl p-6 mb-8">
-          <h3 className="text-white text-lg font-semibold mb-4">Последние расчёты</h3>
+          <h3 className="text-white text-lg font-semibold mb-4">Соңғы есептеулер</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-slate-700">
-                  {['Дата', 'Возраст', 'Пол', 'Регион', 'Уровень риска', 'Премия'].map(h => (
+                  {['Күні', 'Жасы', 'Жынысы', 'Өңір', 'Тәуекел деңгейі', 'Сыйлықақы'].map(h => (
                     <th key={h} className="text-left text-slate-400 py-3 px-4 font-medium">{h}</th>
                   ))}
                 </tr>
@@ -256,7 +256,7 @@ export default function DashboardPage() {
                       </span>
                     </td>
                     <td className="text-white py-3 px-4 font-medium">
-                      {calc.annualPremium.toLocaleString('ru-RU')} ₸
+                      {calc.annualPremium.toLocaleString('kk-KZ')} ₸
                     </td>
                   </tr>
                 ))}
@@ -267,7 +267,7 @@ export default function DashboardPage() {
 
         {/* Region Heatmap */}
         <div className="bg-[#1E293B] rounded-2xl p-6">
-          <h3 className="text-white text-lg font-semibold mb-4">Карта рисков по регионам</h3>
+          <h3 className="text-white text-lg font-semibold mb-4">Өңірлер бойынша тәуекел картасы</h3>
           <RegionHeatmap />
         </div>
       </div>

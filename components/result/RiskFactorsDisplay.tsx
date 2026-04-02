@@ -37,7 +37,7 @@ export default function RiskFactorsDisplay({
   return (
     <div className="bg-[#1E293B] rounded-2xl p-6">
       <h3 className="text-white text-lg font-semibold mb-4">
-        Факторы риска
+        Тәуекел факторлары
       </h3>
 
       <div className="space-y-4">

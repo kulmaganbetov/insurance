@@ -3,27 +3,27 @@ import Link from 'next/link';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'LifeGuard KZ — AI-платформа оценки рисков страхования жизни',
+  title: 'LifeGuard KZ — Өмірді сақтандыру тәуекелдерін бағалау AI платформасы',
   description:
-    'Интеллектуальная платформа для оценки рисков страхования жизни в Казахстане. ' +
-    'Расчёт премий, анализ факторов риска и персональные рекомендации на основе ИИ.',
+    'Қазақстандағы өмірді сақтандыру тәуекелдерін бағалауға арналған интеллектуалды платформа. ' +
+    'Сыйлықақыны есептеу, тәуекел факторларын талдау және AI негізіндегі жеке ұсыныстар.',
   keywords: [
-    'страхование жизни',
-    'Казахстан',
-    'оценка рисков',
-    'калькулятор страхования',
+    'өмірді сақтандыру',
+    'Қазақстан',
+    'тәуекелді бағалау',
+    'сақтандыру калькуляторы',
     'AI',
-    'искусственный интеллект',
+    'жасанды интеллект',
     'LifeGuard',
   ],
   authors: [{ name: 'LifeGuard KZ' }],
   openGraph: {
-    title: 'LifeGuard KZ — AI-платформа оценки рисков страхования жизни',
+    title: 'LifeGuard KZ — Өмірді сақтандыру тәуекелдерін бағалау AI платформасы',
     description:
-      'Интеллектуальная платформа для оценки рисков страхования жизни в Казахстане. ' +
-      'Расчёт премий, анализ факторов риска и персональные рекомендации на основе ИИ.',
+      'Қазақстандағы өмірді сақтандыру тәуекелдерін бағалауға арналған интеллектуалды платформа. ' +
+      'Сыйлықақыны есептеу, тәуекел факторларын талдау және AI негізіндегі жеке ұсыныстар.',
     type: 'website',
-    locale: 'ru_KZ',
+    locale: 'kk_KZ',
     siteName: 'LifeGuard KZ',
     url: 'https://lifeguard.kz',
     images: [
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'LifeGuard KZ — AI-платформа оценки рисков',
+        alt: 'LifeGuard KZ — тәуекелдерді бағалауға арналған AI платформасы',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LifeGuard KZ — AI-платформа оценки рисков страхования жизни',
+    title: 'LifeGuard KZ — Өмірді сақтандыру тәуекелдерін бағалау AI платформасы',
     description:
-      'Интеллектуальная платформа для оценки рисков страхования жизни в Казахстане.',
+      'Қазақстандағы өмірді сақтандыру тәуекелдерін бағалауға арналған интеллектуалды платформа.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -49,10 +49,10 @@ export const metadata: Metadata = {
 };
 
 const NAV_LINKS = [
-  { href: '/', label: 'Главная' },
+  { href: '/', label: 'Басты бет' },
   { href: '/calculator', label: 'Калькулятор' },
-  { href: '/dashboard', label: 'Дашборд' },
-  { href: '/about', label: 'О проекте' },
+  { href: '/dashboard', label: 'Басқару панелі' },
+  { href: '/about', label: 'Жоба туралы' },
 ] as const;
 
 export default function RootLayout({
@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru">
+    <html lang="kk">
       <body className="min-h-screen bg-[#0F172A] font-sans text-gray-100 flex flex-col">
         {/* ── Navigation ───────────────────────────────────────────── */}
         <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0F172A]/80 backdrop-blur-xl">
@@ -148,13 +148,13 @@ export default function RootLayout({
                   </span>
                 </div>
                 <p className="text-sm text-gray-500 leading-relaxed">
-                  AI-платформа оценки рисков страхования жизни в Казахстане.
+                  Қазақстандағы өмірді сақтандыру тәуекелдерін бағалауға арналған AI платформа.
                 </p>
               </div>
 
               {/* Navigation */}
               <div>
-                <h4 className="text-sm font-semibold text-gray-300 mb-3">Навигация</h4>
+                <h4 className="text-sm font-semibold text-gray-300 mb-3">Бағдарлау</h4>
                 <ul className="space-y-2">
                   {NAV_LINKS.map((link) => (
                     <li key={link.href}>
@@ -171,21 +171,21 @@ export default function RootLayout({
 
               {/* Disclaimer */}
               <div>
-                <h4 className="text-sm font-semibold text-gray-300 mb-3">Отказ от ответственности</h4>
+                <h4 className="text-sm font-semibold text-gray-300 mb-3">Жауапкершіліктен бас тарту</h4>
                 <p className="text-xs text-gray-500 leading-relaxed">
-                  Результаты расчётов носят исключительно информационный характер
-                  и не являются офертой или рекомендацией к заключению договора
-                  страхования. Для получения точных условий обратитесь в
-                  лицензированную страховую компанию Республики Казахстан.
-                  Платформа использует модели ИИ, которые могут содержать неточности.
+                  Есептеу нәтижелері тек ақпараттық сипатқа ие және сақтандыру
+                  шартын жасасуға оферта немесе ұсыныс болып табылмайды. Нақты
+                  талаптарды алу үшін Қазақстан Республикасының лицензияланған
+                  сақтандыру компаниясына жүгініңіз. Платформа AI модельдерін
+                  қолданады, сондықтан кейбір дәлсіздіктер болуы мүмкін.
                 </p>
               </div>
             </div>
 
             <div className="mt-8 border-t border-white/5 pt-6 text-center">
               <p className="text-xs text-gray-600">
-                &copy; {new Date().getFullYear()} LifeGuard KZ. Все права защищены.
-                Не является финансовой консультацией.
+                &copy; {new Date().getFullYear()} LifeGuard KZ. Барлық құқықтар қорғалған.
+                Бұл қаржылық кеңес болып табылмайды.
               </p>
             </div>
           </div>

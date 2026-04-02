@@ -11,40 +11,40 @@ x | lx: 0|100000, 10|98200, 20|97400, 25|96800, 30|96000, 35|95000, 40|93500, 45
 Коммутационные числа: Dx = lx * v^x, Nx = сумма Dk от k=x до ω, Cx = dx * v^(x+1), Mx = сумма Ck от k=x до ω
 
 РАЗДЕЛ 2: ФОРМУЛЫ НЕТТО-ТАРИФОВ (Таблица 23.2)
-1. Страхование на дожитие (до возраста x+n лет): nEx = Dx+n / Dx
+1. Мерзім соңына дейін өмір сүруді сақтандыру (до возраста x+n жас): nEx = Dx+n / Dx
 2. Пожизненное на случай смерти: Ax = Mx / (Dx * v)
-3. Срочное на случай смерти на n лет: nAx = (Mx - Mx+n) / (Dx * v)
+3. Қайтыс болу жағдайына мерзімді на n жас: nAx = (Mx - Mx+n) / (Dx * v)
 4. Пожизненная рента пренумерандо: a'x = Nx / Dx
-5. Срочная рента пренумерандо на n лет: n|a'x = (Nx - Nx+n) / Dx
+5. Мерзімді рента пренумерандо на n жас: n|a'x = (Nx - Nx+n) / Dx
 6. Пожизненная рента постнумерандо: ax = Nx+1 / Dx
-7. Срочная рента постнумерандо на n лет: n|ax = (Nx+1 - Nx+n+1) / Dx
+7. Мерзімді рента постнумерандо на n жас: n|ax = (Nx+1 - Nx+n+1) / Dx
 8. Ежегодный взнос: P_annual = nEx / ä, где ä = n|a'x
 9. Брутто-тариф: Тб = (nE + α + (γ + δ) * ä) / (1 - β), α=0.05, β=0.04, γ=0.02, δ=0.03
 
 РАЗДЕЛ 3: ПОПРАВОЧНЫЕ КОЭФФИЦИЕНТЫ РИСКА
 ЗДОРОВЬЕ:
 - Гипертония (давление > 140/90): +12%
-- Ожирение (ИМТ > 30): +10%
-- Ожирение тяжёлое (ИМТ > 35): +18%
+- Семіздік (ИМТ > 30): +10%
+- Семіздік тяжёлое (ИМТ > 35): +18%
 - Сахарный диабет 2 типа: +15%
 - Сердечно-сосудистые заболевания: +25%
 - Перенесённый инфаркт/инсульт: +35%
-- Онкология в анамнезе (ремиссия < 5 лет): +40%
-- Онкология в анамнезе (ремиссия > 5 лет): +15%
+- Анамнездегі онкология (ремиссия < 5 жас): +40%
+- Анамнездегі онкология (ремиссия > 5 жас): +15%
 - Хронические болезни лёгких (ХОБЛ): +20%
 - Хроническая почечная недостаточность: +22%
 
 ОБРАЗ ЖИЗНИ:
-- Курение активное (> 10 сигарет/день): +15%
-- Курение умеренное (< 10 сигарет/день): +8%
-- Бросил курить (< 5 лет назад): +5%
+- Белсенді темекі шегу (> 10 сигарет/день): +15%
+- Орташа темекі шегу (< 10 сигарет/день): +8%
+- Темекіні тастаған (< 5 жас назад): +5%
 - Злоупотребление алкоголем: +12%
 - Физическая активность низкая: +5%
 - Физическая активность высокая: -5% (скидка)
 
 НАСЛЕДСТВЕННОСТЬ:
-- Смерть родителя от ССЗ до 60 лет: +8%
-- Смерть родителя от онкологии до 60 лет: +6%
+- Ата-ананың бірі 60 жасқа дейін ЖҚА-дан қайтыс болуы: +8%
+- Ата-ананың бірі 60 жасқа дейін онкологиядан қайтыс болуы: +6%
 - Диабет у обоих родителей: +7%
 
 РЕГИОН:
@@ -57,11 +57,11 @@ x | lx: 0|100000, 10|98200, 20|97400, 25|96800, 30|96000, 35|95000, 40|93500, 45
 - Ұлытау, отдалённые регионы: +6%
 
 ПОЛ:
-- Мужчина: базовый тариф (ОПЖ = 71.33 года)
-- Женщина: -8% (ОПЖ = 79.42 года)
+- Ер: базовый тариф (ОПЖ = 71.33 года)
+- Әйел: -8% (ОПЖ = 79.42 года)
 
 РАЗДЕЛ 4: АЛГОРИТМ (выполняй СТРОГО по шагам)
-Шаг 1: Получить данные клиента.
+Шаг 1: Жынысыучить данные клиента.
 Шаг 2: Вычислить lx и lx+n (интерполяция линейная).
 Шаг 3: Вычислить коммутационные числа Dx, Dx+n, Nx, Nx+n, Mx.
 Шаг 4: Базовый нетто-тариф по нужной формуле.
@@ -72,13 +72,13 @@ x | lx: 0|100000, 10|98200, 20|97400, 25|96800, 30|96000, 35|95000, 40|93500, 45
 
 РАЗДЕЛ 5: ФОРМАТ ОТВЕТА — строго JSON, все числа как числа (не строки), adjustment как строки вида "+12%":
 {
-  "client_summary": { "age": 35, "gender": "Мужчина", "region": "Алматы", "insurance_type": "Смешанное", "insurance_term": 20, "insurance_sum": 10000000 },
-  "actuarial_calculation": { "lx": 95000, "lx_n": 82500, "Dx": 18456.2, "Dx_n": 7823.1, "Nx": 95234.5, "Nx_n": 41230.8, "Mx": 3241.7, "base_net_tariff": 0.4234, "base_tariff_type": "nEx (страхование на дожитие)" },
-  "risk_factors": [{ "factor": "Гипертония", "adjustment": "+12%" }, { "factor": "Курение активное", "adjustment": "+15%" }],
+  "client_summary": { "age": 35, "gender": "Ер", "region": "Алматы", "insurance_type": "Аралас", "insurance_term": 20, "insurance_sum": 10000000 },
+  "actuarial_calculation": { "lx": 95000, "lx_n": 82500, "Dx": 18456.2, "Dx_n": 7823.1, "Nx": 95234.5, "Nx_n": 41230.8, "Mx": 3241.7, "base_net_tariff": 0.4234, "base_tariff_type": "nEx (сақтандыру на дожитие)" },
+  "risk_factors": [{ "factor": "Гипертония", "adjustment": "+12%" }, { "factor": "Белсенді темекі шегу", "adjustment": "+15%" }],
   "risk_calculation": { "base_tariff": 0.4234, "total_adjustment_coefficient": 1.27, "adjusted_net_tariff": 0.5377, "gross_tariff": 0.6021, "risk_level": "Высокий", "risk_score": 27 },
   "premium": { "annual_premium_per_1000": 60.21, "annual_premium_tenge": 180630, "monthly_premium_tenge": 15052, "one_time_premium_tenge": 2108400 },
-  "life_expectancy_estimate": { "base_kazakhstan": 75.44, "gender_adjusted": 71.33, "personal_adjusted": 68.1, "adjustment_explanation": "Курение и гипертония снижают ОПЖ на ~3.2 года" },
-  "recommendations": ["Рекомендуем смешанное страхование жизни на 20 лет", "Рассмотрите страхование от критических заболеваний", "При отказе от курения тариф снизится на ~8%"],
+  "life_expectancy_estimate": { "base_kazakhstan": 75.44, "gender_adjusted": 71.33, "personal_adjusted": 68.1, "adjustment_explanation": "Курение и гипертония күтілетін өмір ұзақтығын төмендетеді на ~3.2 года" },
+  "recommendations": ["Ұсынамыз аралас өмірді сақтандыруды 20 жас", "Ауыр дерттерден сақтандыруды қарастырыңыз", "При отказе от курения тариф снизится на ~8%"],
   "comparison_traditional": { "traditional_tariff": 0.4234, "ai_adjusted_tariff": 0.5377, "difference_percent": 27, "explanation": "Традиционный расчёт не учитывает индивидуальные факторы. AI скорректировал на +27%." }
 }`;
 
@@ -137,7 +137,7 @@ const DISEASE_LABELS: Record<string, string> = {
   diabetes: 'Сахарный диабет 2 типа',
   cardiovascular: 'Сердечно-сосудистые заболевания',
   heart_attack_stroke: 'Перенесённый инфаркт/инсульт',
-  oncology: 'Онкология в анамнезе',
+  oncology: 'Анамнездегі онкология',
   chronic_lung: 'Хронические болезни лёгких (ХОБЛ)',
   chronic_kidney: 'Хроническая почечная недостаточность',
 };
@@ -154,9 +154,9 @@ const DISEASE_ADJUSTMENTS: Record<string, number> = {
 
 const SMOKING_LABELS: Record<string, string> = {
   none: 'Не курит',
-  moderate: 'Курение умеренное',
-  active: 'Курение активное',
-  quit_recent: 'Бросил курить < 5 лет',
+  moderate: 'Орташа темекі шегу',
+  active: 'Белсенді темекі шегу',
+  quit_recent: 'Темекіні тастаған < 5 жас',
 };
 
 const ALCOHOL_LABELS: Record<string, string> = {
@@ -172,8 +172,8 @@ const ACTIVITY_LABELS: Record<string, string> = {
 };
 
 const HEREDITY_LABELS: Record<string, string> = {
-  parent_cvd: 'Родитель умер от ССЗ до 60 лет',
-  parent_oncology: 'Родитель умер от онкологии до 60 лет',
+  parent_cvd: 'Родитель умер от ССЗ до 60 жас',
+  parent_oncology: 'Родитель умер от онкологии до 60 жас',
   parent_diabetes: 'Диабет у обоих родителей',
 };
 
@@ -203,7 +203,7 @@ const REGION_LABELS: Record<string, string> = {
 const INSURANCE_TYPE_LABELS: Record<string, string> = {
   endowment: 'На дожитие',
   term_life: 'На случай смерти (срочное)',
-  mixed: 'Смешанное',
+  mixed: 'Аралас',
   whole_life: 'Пожизненное',
   pension_annuity: 'Пенсионная рента',
 };
@@ -211,36 +211,36 @@ const INSURANCE_TYPE_LABELS: Record<string, string> = {
 // ─── Build GPT user message ────────────────────────────────────────
 function buildUserMessage(data: Record<string, unknown>): string {
   const age = data.age;
-  const gender = data.gender === 'male' ? 'Мужчина' : 'Женщина';
+  const gender = data.gender === 'male' ? 'Ер' : 'Әйел';
   const region = REGION_LABELS[String(data.region)] || String(data.region);
   const insType = INSURANCE_TYPE_LABELS[String(data.insuranceType)] || String(data.insuranceType);
   const bmi = data.bmi;
   const bmiCat = data.bmiCategory || '';
-  const bp = data.bloodPressure || 'Не указано';
+  const bp = data.bloodPressure || 'Көрсетілмеген';
   const diseases = Array.isArray(data.diseases) && data.diseases.length > 0
     ? data.diseases.map((d: string) => DISEASE_LABELS[d] || d).join(', ')
-    : 'нет';
+    : 'жоқ';
   const smoking = SMOKING_LABELS[String(data.smoking)] || String(data.smoking);
   const alcohol = ALCOHOL_LABELS[String(data.alcohol)] || String(data.alcohol);
   const activity = ACTIVITY_LABELS[String(data.activity)] || String(data.activity);
   const heredity = Array.isArray(data.heredity) && data.heredity.length > 0
     ? data.heredity.map((h: string) => HEREDITY_LABELS[h] || h).join(', ')
-    : 'нет';
+    : 'жоқ';
 
-  return `Рассчитай страховой риск для клиента со следующими данными:
-- Возраст: ${age} лет
-- Пол: ${gender}
-- Регион: ${region}
+  return `Келесі деректер бойынша клиенттің сақтандыру тәуекелін есепте:
+- Жасы: ${age} жас
+- Жынысы: ${gender}
+- Өңірі: ${region}
 - ИМТ: ${bmi} (${bmiCat})
-- Артериальное давление: ${bp}
-- Хронические заболевания: ${diseases}
-- Курение: ${smoking}
+- Артериялық қысым: ${bp}
+- Созылмалы аурулар: ${diseases}
+- Темекі: ${smoking}
 - Алкоголь: ${alcohol}
-- Физическая активность: ${activity}
-- Наследственность: ${heredity}
-- Тип страхования: ${insType}
-- Срок страхования: ${data.term} лет
-- Страховая сумма: ${data.insuranceSum} тенге`;
+- Дене белсенділігі: ${activity}
+- Тұқымқуалаушылық: ${heredity}
+- Сақтандыру түрі: ${insType}
+- Сақтандыру мерзімі: ${data.term} жас
+- Сақтандыру сомасы: ${data.insuranceSum} тенге`;
 }
 
 // ─── Full fallback actuarial calculation ───────────────────────────
@@ -277,7 +277,7 @@ function generateFallbackResult(data: Record<string, unknown>) {
   switch (insuranceType) {
     case 'endowment':
       baseTariff = Dxn / Dx; // nEx
-      tariffType = 'nEx (страхование на дожитие)';
+      tariffType = 'nEx (сақтандыру на дожитие)';
       break;
     case 'term_life':
       baseTariff = (Mx - Mxn) / (Dx * V); // nAx
@@ -296,7 +296,7 @@ function generateFallbackResult(data: Record<string, unknown>) {
       const endowment = Dxn / Dx;
       const termLife = (Mx - Mxn) / (Dx * V);
       baseTariff = endowment + termLife;
-      tariffType = 'nEx + nAx (смешанное страхование)';
+      tariffType = 'nEx + nAx (аралас сақтандыру)';
       break;
     }
   }
@@ -308,9 +308,9 @@ function generateFallbackResult(data: Record<string, unknown>) {
   // Gender
   if (gender === 'female') {
     totalAdj -= 0.08;
-    factors.push({ factor: 'Пол: Женщина (ОПЖ 79.42)', adjustment: '-8%' });
+    factors.push({ factor: 'Жынысы: Әйел (ОПЖ 79.42)', adjustment: '-8%' });
   } else {
-    factors.push({ factor: 'Пол: Мужчина (ОПЖ 71.33)', adjustment: '+0%' });
+    factors.push({ factor: 'Жынысы: Ер (ОПЖ 71.33)', adjustment: '+0%' });
   }
 
   // Region
@@ -326,16 +326,16 @@ function generateFallbackResult(data: Record<string, unknown>) {
   const rAdj = regionAdj[region] || 0;
   if (rAdj !== 0) {
     totalAdj += rAdj;
-    factors.push({ factor: `Регион: ${REGION_LABELS[region] || region}`, adjustment: `${rAdj > 0 ? '+' : ''}${(rAdj * 100).toFixed(0)}%` });
+    factors.push({ factor: `Өңір: ${REGION_LABELS[region] || region}`, adjustment: `${rAdj > 0 ? '+' : ''}${(rAdj * 100).toFixed(0)}%` });
   }
 
   // BMI
   if (bmi > 35) {
     totalAdj += 0.18;
-    factors.push({ factor: 'Ожирение тяжёлое (ИМТ > 35)', adjustment: '+18%' });
+    factors.push({ factor: 'Семіздік тяжёлое (ИМТ > 35)', adjustment: '+18%' });
   } else if (bmi > 30) {
     totalAdj += 0.10;
-    factors.push({ factor: 'Ожирение (ИМТ > 30)', adjustment: '+10%' });
+    factors.push({ factor: 'Семіздік (ИМТ > 30)', adjustment: '+10%' });
   }
 
   // Diseases
@@ -394,11 +394,11 @@ function generateFallbackResult(data: Record<string, unknown>) {
   const oneTimePremium = Math.round(annualPremium * annuityCoeff * 0.85);
 
   // Step 8: Risk level
-  let riskLevel = 'Низкий';
+  let riskLevel = 'Төмен';
   let riskScore = 15;
-  if (K_total >= 1.45) { riskLevel = 'Очень высокий'; riskScore = 85; }
-  else if (K_total >= 1.25) { riskLevel = 'Высокий'; riskScore = 65; }
-  else if (K_total >= 1.10) { riskLevel = 'Средний'; riskScore = 40; }
+  if (K_total >= 1.45) { riskLevel = 'Өте жоғары'; riskScore = 85; }
+  else if (K_total >= 1.25) { riskLevel = 'Жоғары'; riskScore = 65; }
+  else if (K_total >= 1.10) { riskLevel = 'Орташа'; riskScore = 40; }
 
   // Scale risk_score to 0-100 range based on K_total
   riskScore = Math.min(100, Math.max(1, Math.round((K_total - 0.9) * 100)));
@@ -415,7 +415,7 @@ function generateFallbackResult(data: Record<string, unknown>) {
   return {
     client_summary: {
       age,
-      gender: gender === 'male' ? 'Мужчина' : 'Женщина',
+      gender: gender === 'male' ? 'Ер' : 'Әйел',
       region: REGION_LABELS[region] || region,
       insurance_type: INSURANCE_TYPE_LABELS[insuranceType] || insuranceType,
       insurance_term: term,
@@ -452,13 +452,13 @@ function generateFallbackResult(data: Record<string, unknown>) {
       gender_adjusted: baseLifeExpectancy,
       personal_adjusted: personalLE,
       adjustment_explanation: factors.length > 1
-        ? `Факторы риска ${factors.filter(f => f.adjustment.startsWith('+')).map(f => f.factor).slice(0, 3).join(', ')} снижают ОПЖ`
-        : 'Оценка скорректирована на основе факторов риска клиента',
+        ? `Тәуекел факторлары ${factors.filter(f => f.adjustment.startsWith('+')).map(f => f.factor).slice(0, 3).join(', ')} күтілетін өмір ұзақтығын төмендетеді`
+        : 'Бағалау клиенттің тәуекел факторлары негізінде түзетілді',
     },
     recommendations: [
-      `Рекомендуем ${INSURANCE_TYPE_LABELS[insuranceType]?.toLowerCase() || 'смешанное'} страхование жизни на ${term} лет`,
-      smoking !== 'none' ? 'При отказе от курения тариф снизится на 8–15%' : 'Рассмотрите страхование от критических заболеваний',
-      activity === 'low' ? 'Увеличение физической активности снизит тариф на 5%' : 'Поддерживайте текущий уровень физической активности для сохранения тарифа',
+      `Ұсынамыз ${INSURANCE_TYPE_LABELS[insuranceType]?.toLowerCase() || 'аралас'} өмірді сақтандыруды ${term} жас`,
+      smoking !== 'none' ? 'Темекіні тастағанда тариф 8–15%-ға төмендейді' : 'Ауыр дерттерден сақтандыруды қарастырыңыз',
+      activity === 'low' ? 'Дене белсенділігін арттыру тарифті 5%-ға төмендетеді' : 'Тарифті сақтау үшін қазіргі дене белсенділігі деңгейін ұстаныңыз',
     ],
     comparison_traditional: {
       traditional_tariff: Number(baseTariff.toFixed(6)),
@@ -485,7 +485,7 @@ async function trySaveToDb(data: Record<string, unknown>, result: Record<string,
         ${String(data.insuranceType)},
         ${Number(data.term)},
         ${Number(data.insuranceSum)},
-        ${String((result as { risk_calculation?: { risk_level?: string } }).risk_calculation?.risk_level || 'Неизвестно')},
+        ${String((result as { risk_calculation?: { risk_level?: string } }).risk_calculation?.risk_level || 'Белгісіз')},
         ${Number((result as { risk_calculation?: { risk_score?: number } }).risk_calculation?.risk_score || 0)},
         ${Number((result as { premium?: { annual_premium_tenge?: number } }).premium?.annual_premium_tenge || 0)},
         ${Number((result as { premium?: { monthly_premium_tenge?: number } }).premium?.monthly_premium_tenge || 0)},
@@ -538,7 +538,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Calculate API error:', error);
     return NextResponse.json(
-      { error: 'Ошибка при расчёте. Пожалуйста, попробуйте снова.' },
+      { error: 'Есептеу қатесі. Қайтадан көріңіз.' },
       { status: 500 }
     );
   }

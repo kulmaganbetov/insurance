@@ -20,7 +20,7 @@ export default function RecommendationsList({
 }: RecommendationsListProps) {
   return (
     <div className="bg-[#1E293B] rounded-2xl p-6">
-      <h3 className="text-white text-lg font-semibold mb-4">Рекомендации</h3>
+      <h3 className="text-white text-lg font-semibold mb-4">Ұсыныстар</h3>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {recommendations.slice(0, 3).map((rec, i) => {

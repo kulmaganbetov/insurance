@@ -44,11 +44,11 @@ export default function StepOne() {
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-2">
           <User className="w-4 h-4 text-emerald-400" />
-          Имя (необязательно)
+          Аты (міндетті емес)
         </label>
         <input
           {...register('name')}
-          placeholder="Введите ваше имя"
+          placeholder="Атыңызды енгізіңіз"
           className="w-full bg-[#1E293B] border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
         />
       </div>
@@ -56,8 +56,8 @@ export default function StepOne() {
       {/* Age slider */}
       <div>
         <label className="flex items-center justify-between text-sm font-medium text-gray-300 mb-3">
-          <span>Возраст</span>
-          <span className="text-2xl font-bold text-emerald-400">{age} лет</span>
+          <span>Жасы</span>
+          <span className="text-2xl font-bold text-emerald-400">{age} жас</span>
         </label>
         <input
           type="range"
@@ -77,11 +77,11 @@ export default function StepOne() {
 
       {/* Gender toggle */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-3">Пол</label>
+        <label className="block text-sm font-medium text-gray-300 mb-3">Жынысы</label>
         <div className="grid grid-cols-2 gap-4">
           {[
-            { value: 'male', label: 'Мужской', emoji: '♂' },
-            { value: 'female', label: 'Женский', emoji: '♀' },
+            { value: 'male', label: 'Ер', emoji: '♂' },
+            { value: 'female', label: 'Әйел', emoji: '♀' },
           ].map((opt) => (
             <motion.button
               key={opt.value}
@@ -109,13 +109,13 @@ export default function StepOne() {
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-2">
           <MapPin className="w-4 h-4 text-emerald-400" />
-          Регион
+          Өңір
         </label>
         <select
           {...register('region')}
           className="w-full bg-[#1E293B] border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all appearance-none cursor-pointer"
         >
-          <option value="">Выберите регион</option>
+          <option value="">Өңірді таңдаңыз</option>
           {REGIONS.map((r) => (
             <option key={r.value} value={r.value}>
               {r.label}
@@ -130,14 +130,14 @@ export default function StepOne() {
       {/* Height & Weight with BMI */}
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-3">
-          Рост и вес
+          Бойы мен салмағы
         </label>
         <div className="grid grid-cols-2 gap-4">
           <div className="relative">
             <Ruler className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
               type="number"
-              placeholder="Рост, см"
+              placeholder="Бойы, см"
               {...register('height', { valueAsNumber: true })}
               className="w-full bg-[#1E293B] border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             />
@@ -149,7 +149,7 @@ export default function StepOne() {
             <Weight className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
               type="number"
-              placeholder="Вес, кг"
+              placeholder="Салмағы, кг"
               {...register('weight', { valueAsNumber: true })}
               className="w-full bg-[#1E293B] border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             />
@@ -167,7 +167,7 @@ export default function StepOne() {
             className="mt-4 bg-[#1E293B] border border-gray-700 rounded-xl p-4 flex items-center justify-between"
           >
             <div>
-              <span className="text-sm text-gray-400">Индекс массы тела (ИМТ)</span>
+              <span className="text-sm text-gray-400">Дене салмағы индексі (ДСИ)</span>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="text-2xl font-bold text-white">{bmi.toFixed(1)}</span>
                 {bmiCategory && (

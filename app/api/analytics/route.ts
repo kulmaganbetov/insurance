@@ -23,21 +23,21 @@ function generateMockData() {
   ];
 
   const riskDistribution = [
-    { level: 'Низкий', count: 512, percentage: 41, color: '#22c55e' },
-    { level: 'Средний', count: 362, percentage: 29, color: '#eab308' },
-    { level: 'Высокий', count: 287, percentage: 23, color: '#f97316' },
-    { level: 'Очень высокий', count: 86, percentage: 7, color: '#ef4444' },
+    { level: 'Төмен', count: 512, percentage: 41, color: '#22c55e' },
+    { level: 'Орташа', count: 362, percentage: 29, color: '#eab308' },
+    { level: 'Жоғары', count: 287, percentage: 23, color: '#f97316' },
+    { level: 'Өте жоғары', count: 86, percentage: 7, color: '#ef4444' },
   ];
 
   const topFactors = [
-    { factor: 'Курение', occurrences: 387, avgImpact: '+13.2%' },
+    { factor: 'Темекі', occurrences: 387, avgImpact: '+13.2%' },
     { factor: 'Гипертония', occurrences: 312, avgImpact: '+12.0%' },
-    { factor: 'Ожирение (ИМТ > 30)', occurrences: 276, avgImpact: '+10.5%' },
-    { factor: 'Низкая физическая активность', occurrences: 245, avgImpact: '+5.0%' },
-    { factor: 'Наследственность ССЗ', occurrences: 198, avgImpact: '+8.0%' },
-    { factor: 'Диабет 2 типа', occurrences: 156, avgImpact: '+15.0%' },
-    { factor: 'Злоупотребление алкоголем', occurrences: 134, avgImpact: '+12.0%' },
-    { factor: 'Сердечно-сосудистые заболевания', occurrences: 98, avgImpact: '+25.0%' },
+    { factor: 'Семіздік (ДСИ > 30)', occurrences: 276, avgImpact: '+10.5%' },
+    { factor: 'Дене белсенділігі төмен', occurrences: 245, avgImpact: '+5.0%' },
+    { factor: 'ЖҚА тұқымқуалаушылығы', occurrences: 198, avgImpact: '+8.0%' },
+    { factor: '2-типті диабет', occurrences: 156, avgImpact: '+15.0%' },
+    { factor: 'Алкогольді шамадан тыс қолдану', occurrences: 134, avgImpact: '+12.0%' },
+    { factor: 'Жүрек-қантамыр аурулары', occurrences: 98, avgImpact: '+25.0%' },
   ];
 
   const recentCalculations = [
@@ -45,45 +45,45 @@ function generateMockData() {
       id: 1,
       date: '2026-03-25',
       age: 42,
-      gender: 'Мужчина',
+      gender: 'Ер',
       region: 'Алматы',
-      riskLevel: 'Средний',
+      riskLevel: 'Орташа',
       annualPremium: 156000,
     },
     {
       id: 2,
       date: '2026-03-25',
       age: 35,
-      gender: 'Женщина',
+      gender: 'Әйел',
       region: 'Астана',
-      riskLevel: 'Низкий',
+      riskLevel: 'Төмен',
       annualPremium: 98000,
     },
     {
       id: 3,
       date: '2026-03-24',
       age: 58,
-      gender: 'Мужчина',
+      gender: 'Ер',
       region: 'Шымкент',
-      riskLevel: 'Высокий',
+      riskLevel: 'Жоғары',
       annualPremium: 234000,
     },
     {
       id: 4,
       date: '2026-03-24',
       age: 29,
-      gender: 'Женщина',
+      gender: 'Әйел',
       region: 'Алматы',
-      riskLevel: 'Низкий',
+      riskLevel: 'Төмен',
       annualPremium: 72000,
     },
     {
       id: 5,
       date: '2026-03-24',
       age: 51,
-      gender: 'Мужчина',
-      region: 'Караганда',
-      riskLevel: 'Очень высокий',
+      gender: 'Ер',
+      region: 'Қарағанды',
+      riskLevel: 'Өте жоғары',
       annualPremium: 312000,
     },
   ];
@@ -165,15 +165,15 @@ export async function GET() {
       `;
 
       const highRiskRow = riskResults.rows.find(
-        (r) => r.risk_level === 'Высокий' || r.risk_level === 'Очень высокий'
+        (r) => r.risk_level === 'Жоғары' || r.risk_level === 'Өте жоғары'
       );
-      const lowRiskRow = riskResults.rows.find((r) => r.risk_level === 'Низкий');
+      const lowRiskRow = riskResults.rows.find((r) => r.risk_level === 'Төмен');
 
       const riskColorMap: Record<string, string> = {
-        'Низкий': '#22c55e',
-        'Средний': '#eab308',
-        'Высокий': '#f97316',
-        'Очень высокий': '#ef4444',
+        'Төмен': '#22c55e',
+        'Орташа': '#eab308',
+        'Жоғары': '#f97316',
+        'Өте жоғары': '#ef4444',
       };
 
       return NextResponse.json({
@@ -216,7 +216,7 @@ export async function GET() {
   } catch (error) {
     console.error('Analytics API error:', error);
     return NextResponse.json(
-      { error: 'Ошибка при получении аналитики' },
+      { error: 'Аналитиканы алу қатесі' },
       { status: 500 }
     );
   }
