@@ -17,9 +17,9 @@ const schema = z.object({
   name: z.string().optional(),
   age: z.number().min(18).max(75),
   gender: z.string().min(1, 'Жынысты таңдаңыз'),
-  region: z.string().min(1, 'Аймақты таңдаңыз'),
-  height: z.number().min(100, 'Мин. 100 см').max(250, 'Макс. 250 см'),
-  weight: z.number().min(30, 'Мин. 30 кг').max(300, 'Макс. 300 кг'),
+  region: z.string().min(1, 'Өңірді таңдаңыз'),
+  height: z.number().min(100, 'Ең азы 100 см').max(250, 'Ең көбі 250 см'),
+  weight: z.number().min(30, 'Ең азы 30 кг').max(300, 'Ең көбі 300 кг'),
   diseases: z.array(z.string()).default([]),
   systolic: z.number().min(60).max(250).optional().or(z.nan()),
   diastolic: z.number().min(40).max(160).optional().or(z.nan()),
@@ -104,11 +104,11 @@ export default function CalculatorPage() {
       ...data,
       bmi: bmiVal ? Number(bmiVal.toFixed(1)) : null,
       bmiCategory: bmiVal
-        ? bmiVal < 18.5 ? 'Жеткіліксіз салмақ'
+        ? bmiVal < 18.5 ? 'Салмақ жеткіліксіз'
           : bmiVal < 25 ? 'Қалыпты'
           : bmiVal < 30 ? 'Артық салмақ'
-          : bmiVal < 35 ? 'I дәрежелі семіздік'
-          : 'II+ дәрежелі семіздік'
+          : bmiVal < 35 ? 'Семіздік I дәреже'
+          : 'Семіздік II+ дәреже'
         : null,
       bloodPressure: data.systolic && data.diastolic
         ? `${data.systolic}/${data.diastolic}`
@@ -146,9 +146,9 @@ export default function CalculatorPage() {
           country_average: result.life_expectancy_estimate?.base_kazakhstan ?? 75.44,
         },
         recommendations: result.recommendations ?? [
-          'Жыл сайын медициналық тексеруден өту ұсынылады',
-          'Тәуекелдерді азайту үшін салауатты өмір салтын ұстаныңыз',
-          'Сыни аурулардан сақтандыруды қарастырыңыз',
+          'Жыл сайын медициналық тексеруден өтіңіз',
+          'Тәуекелді азайту үшін салауатты өмір салтын ұстаныңыз',
+          'Ауыр дерттерден сақтандыруды қарастырыңыз',
         ],
         risk_factors: (result.risk_factors ?? []).map((f: { factor: string; adjustment: string | number }) => {
           let adj: number;
@@ -176,7 +176,7 @@ export default function CalculatorPage() {
       router.push('/result');
     } catch (error) {
       console.error('Calculation error:', error);
-      alert('Есептеу кезінде қате пайда болды. Қайта көріңіз.');
+      alert('Есептеу кезінде қате болды. Қайтадан көріңіз.');
     } finally {
       setIsLoading(false);
     }
@@ -190,7 +190,7 @@ export default function CalculatorPage() {
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
             Сақтандыру калькуляторы
           </h1>
-          <p className="text-slate-400">Жеке есептеу үшін сауалнаманы толтырыңыз</p>
+          <p className="text-slate-400">Жеке есептеу үшін анкетаны толтырыңыз</p>
         </div>
 
         {/* Progress bar */}
@@ -221,7 +221,7 @@ export default function CalculatorPage() {
           </div>
           <div className="text-center">
             <span className="text-sm text-slate-400">
-              {STEPS.length}-ден {step + 1}-қадам: {STEPS[step].title}
+              Қадам {step + 1} / {STEPS.length}: {STEPS[step].title}
             </span>
           </div>
         </div>

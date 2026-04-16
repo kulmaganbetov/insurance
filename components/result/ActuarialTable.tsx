@@ -21,8 +21,8 @@ export default function ActuarialTable({ data }: ActuarialTableProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const rows = [
-    { label: 'lx (x жасқа дейін тірі қалғандар)', value: data.lx },
-    { label: 'lx+n (x+n жасқа дейін тірі қалғандар)', value: data.lx_n },
+    { label: 'lx (x жаста тірі қалғандар)', value: data.lx },
+    { label: 'lx+n (x+n жаста тірі қалғандар)', value: data.lx_n },
     { label: 'Dx (дисконтталған тірі қалғандар)', value: data.Dx },
     { label: 'Dx+n', value: data.Dx_n },
     { label: 'Nx (коммутациялық сан)', value: data.Nx },
@@ -68,7 +68,7 @@ export default function ActuarialTable({ data }: ActuarialTableProps) {
                   <td className="text-slate-300 py-3 px-4">{row.label}</td>
                   <td className="text-white text-right py-3 px-4 font-mono">
                     {typeof row.value === 'number'
-                      ? row.value.toLocaleString('ru-RU', {
+                      ? row.value.toLocaleString('kk-KZ', {
                           maximumFractionDigits: 6,
                         })
                       : row.value}

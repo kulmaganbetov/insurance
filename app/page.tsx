@@ -41,7 +41,7 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
 
   return (
     <div ref={ref} className="text-3xl md:text-4xl font-bold text-white">
-      {count.toLocaleString('ru-RU')}{suffix}
+      {count.toLocaleString('kk-KZ')}{suffix}
     </div>
   );
 }
@@ -85,7 +85,7 @@ export default function HomePage() {
             <motion.div variants={fadeInUp} transition={{ duration: 0.6 }}>
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
                 <Zap className="w-4 h-4" />
-                AI-powered Insurance Platform
+                AI негізіндегі сақтандыру платформасы
               </span>
             </motion.div>
 
@@ -94,8 +94,8 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
             >
-              Өмірді сақтандыру тәуекелдерін{' '}
-              <span className="gradient-text">ақылды бағалау</span>
+              Өмірді сақтандырудағы{' '}
+              <span className="gradient-text">тәуекелдерді ақылды бағалау</span>
             </motion.h1>
 
             <motion.p
@@ -103,8 +103,8 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed"
             >
-              Қазақстандағы бірінші AI-платформа — актуарлық формулалар мен
-              нейрожелі негізінде жеке сақтандыру сыйлықақысын есептейді
+              Қазақстандағы алғашқы AI-платформа: актуарлық формулалар мен
+              нейрожеліні қолданып, сақтандыру сыйлықақысын жеке есептейді
             </motion.p>
 
             <motion.div
@@ -120,12 +120,6 @@ export default function HomePage() {
                 Тегін есептеу
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link
-                href="/about"
-                className="flex items-center gap-2 px-8 py-4 border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white font-semibold rounded-xl transition-all"
-              >
-                Толығырақ білу
-              </Link>
             </motion.div>
           </motion.div>
 
@@ -137,9 +131,9 @@ export default function HomePage() {
             className="grid grid-cols-3 gap-6 mt-20 max-w-2xl mx-auto"
           >
             {[
-              { target: 10000, suffix: '+', label: 'Есептеулер' },
+              { target: 10000, suffix: '+', label: 'Есептеу' },
               { target: 98, suffix: '%', label: 'Дәлдік' },
-              { target: 17, suffix: '', label: 'ҚР аймағы' },
+              { target: 24, suffix: '', label: 'ҚР өңірі' },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <AnimatedCounter target={item.target} suffix={item.suffix} />
@@ -164,7 +158,7 @@ export default function HomePage() {
                 Дәстүрлі сақтандыру мәселелері
               </h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                Қазақстандағы өмірді сақтандыру нарығы маңызды қиындықтарға тап болуда
+                Қазақстанның өмірді сақтандыру нарығы күрделі сын-қатерлерге тап болып отыр
               </p>
             </motion.div>
 
@@ -172,22 +166,22 @@ export default function HomePage() {
               {[
                 {
                   icon: TrendingDown,
-                  title: 'Барлығы үшін бірдей тариф',
-                  desc: 'Сау адам темекі шегетін диабетиктей ақы төлейді. Жекелендіру жоқ.',
+                  title: 'Барлығына бірдей тариф',
+                  desc: 'Дені сау адам мен темекі шегетін диабетпен ауыратын адам бірдей төлейді. Жекелендіру жоқ.',
                   color: 'text-red-400',
                   bg: 'bg-red-500/10',
                 },
                 {
                   icon: Clock,
                   title: 'Ұзақ андеррайтинг',
-                  desc: 'Андеррайтинг 3–5 күн алады. Осы уақытта клиент бәсекелестерге кетеді.',
+                  desc: 'Андеррайтинг 3–5 күнге созылады. Осы уақытта клиент бәсекелеске кетуі мүмкін.',
                   color: 'text-orange-400',
                   bg: 'bg-orange-500/10',
                 },
                 {
                   icon: AlertTriangle,
                   title: '15–20% шығын',
-                  desc: 'Тәуекелдерді дәлсіз бағалау сақтандыру портфелінде 15–20% шығынға әкеледі.',
+                  desc: 'Тәуекелді дәл бағаламау сақтандыру портфелінің 15–20% шығынына әкеледі.',
                   color: 'text-yellow-400',
                   bg: 'bg-yellow-500/10',
                 },
@@ -224,16 +218,16 @@ export default function HomePage() {
                 <span className="gradient-text">LifeGuard KZ</span> қалай жұмыс істейді
               </h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                Сауалнамадан жеке тарифке 2 минутта
+                Анкетадан жеке тарифке дейін — 2 минутта
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-4 gap-6 mb-16">
               {[
-                { icon: FileText, step: '01', title: 'Сауалнама', desc: 'Сауалнаманы 2 минутта толтырыңыз', color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+                { icon: FileText, step: '01', title: 'Анкета', desc: 'Анкетаны 2 минутта толтырыңыз', color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
                 { icon: Brain, step: '02', title: 'AI-талдау', desc: 'GPT-4o mini факторларды талдайды', color: 'text-blue-400', bg: 'bg-blue-500/10' },
-                { icon: Calculator, step: '03', title: 'Актуарлық есептеу', desc: 'ҚР формулалары мен кестелері', color: 'text-purple-400', bg: 'bg-purple-500/10' },
-                { icon: Shield, step: '04', title: 'Жеке тариф', desc: 'Жеке сыйлықақы', color: 'text-yellow-400', bg: 'bg-yellow-500/10' },
+                { icon: Calculator, step: '03', title: 'Актуарлық есеп', desc: 'ҚР формулалары мен кестелері', color: 'text-purple-400', bg: 'bg-purple-500/10' },
+                { icon: Shield, step: '04', title: 'Жеке тариф', desc: 'Жеке сақтандыру сыйлықақысы', color: 'text-yellow-400', bg: 'bg-yellow-500/10' },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -276,7 +270,7 @@ export default function HomePage() {
                       ['Жекелендіру', 'Жоқ', 'Толық'],
                       ['Факторларды ескеру', '3–5 параметр', '15+ параметр'],
                       ['Дәлдік', '~80%', '~98%'],
-                      ['Бағасы', 'Қымбат', 'Тегін'],
+                      ['Құны', 'Қымбат', 'Тегін'],
                     ].map(([param, trad, ai], i) => (
                       <tr key={i} className="border-b border-slate-700/50">
                         <td className="text-slate-300 py-3 px-6">{param}</td>
@@ -291,67 +285,6 @@ export default function HomePage() {
                     ))}
                   </tbody>
                 </table>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════ SAMPLE RESULT ═══════ */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          >
-            <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Нәтиже үлгісі
-              </h2>
-              <p className="text-slate-400 max-w-2xl mx-auto">
-                AI-талдаудан кейінгі жеке есеп осылай көрінеді
-              </p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} transition={{ duration: 0.5 }}>
-              <div className="glass-card p-8">
-                <div className="grid md:grid-cols-3 gap-6">
-                  {/* Mock gauge */}
-                  <div className="flex flex-col items-center">
-                    <svg viewBox="0 0 200 120" className="w-48">
-                      <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#334155" strokeWidth="16" strokeLinecap="round" />
-                      <path d="M 20 100 A 80 80 0 0 1 60 35" fill="none" stroke="#10B981" strokeWidth="16" strokeLinecap="round" />
-                      <path d="M 60 35 A 80 80 0 0 1 100 20" fill="none" stroke="#F59E0B" strokeWidth="16" strokeLinecap="butt" />
-                      <path d="M 100 20 A 80 80 0 0 1 140 35" fill="none" stroke="#F97316" strokeWidth="16" strokeLinecap="butt" />
-                      <text x="100" y="80" textAnchor="middle" fill="white" fontSize="28" fontWeight="bold">27</text>
-                      <text x="100" y="100" textAnchor="middle" fill="#94A3B8" fontSize="11">Жоғары тәуекел</text>
-                    </svg>
-                  </div>
-                  {/* Mock premium */}
-                  <div className="space-y-3">
-                    <h4 className="text-white font-semibold">Сақтандыру сыйлықақысы</h4>
-                    <div className="border border-emerald-500/30 rounded-xl p-3 bg-emerald-500/5">
-                      <p className="text-slate-400 text-xs">Жылдық</p>
-                      <p className="text-emerald-400 text-2xl font-bold">180 630 ₸</p>
-                    </div>
-                    <div className="border border-slate-600/50 rounded-xl p-3">
-                      <p className="text-slate-400 text-xs">Айлық</p>
-                      <p className="text-white text-lg font-semibold">15 052 ₸</p>
-                    </div>
-                  </div>
-                  {/* Mock recommendations */}
-                  <div className="space-y-3">
-                    <h4 className="text-white font-semibold">Ұсыныстар</h4>
-                    {['20 жылға аралас сақтандыру', 'Ауыр аурулардан сақтандыру', 'Темекіден бас тарту тарифті ~8%-ға азайтады'].map((rec, i) => (
-                      <div key={i} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-slate-400">{rec}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -383,8 +316,8 @@ export default function HomePage() {
                 {
                   icon: Building2,
                   title: 'Сақтандыру компаниялары',
-                  desc: 'Андеррайтингті автоматтандыру және шығынды азайту үшін API-интеграциясы.',
-                  features: ['API қолжетімділігі', 'Аналитика', 'Жаппай есептеу'],
+                  desc: 'Андеррайтингті автоматтандыру және шығынды азайтуға арналған API-интеграция.',
+                  features: ['API қолжетімділік', 'Талдау', 'Жаппай есептеу'],
                   color: 'blue',
                 },
               ].map((item, i) => (
@@ -427,7 +360,7 @@ export default function HomePage() {
           >
             <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="text-center mb-14">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Технологиялар</h2>
-              <p className="text-slate-400">Дәл есептеулерге арналған сенімді стек</p>
+              <p className="text-slate-400">Нақты есептеуге арналған сенімді стек</p>
             </motion.div>
 
             <motion.div variants={fadeInUp} transition={{ duration: 0.5 }}>
@@ -437,7 +370,7 @@ export default function HomePage() {
                   { label: 'Next.js 14', icon: Zap },
                   { label: 'Vercel', icon: Shield },
                   { label: 'Актуарлық формулалар', icon: Calculator },
-                  { label: 'ҚР Ұлтстатистика бюросы', icon: BarChart3 },
+                  { label: 'ҚР Ұлттық статистика бюросы', icon: BarChart3 },
                 ].map((tech, i) => (
                   <div
                     key={i}
@@ -469,7 +402,7 @@ export default function HomePage() {
                 Сақтандыру тәуекеліңізді білуге дайынсыз ба?
               </h2>
               <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-                2 минутта тегін есептеу. Тіркелусіз және міндеттемесіз.
+                2 минутта тегін есептеу. Тіркеусіз және міндеттемесіз.
               </p>
               <Link
                 href="/calculator"

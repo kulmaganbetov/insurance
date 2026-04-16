@@ -102,7 +102,7 @@ export default function RegionHeatmap() {
         {[
           { color: '#10B981', label: 'Төмен (< 30%)' },
           { color: '#F59E0B', label: 'Орташа (30-35%)' },
-          { color: '#F97316', label: 'Жоғарылатылған (35-40%)' },
+          { color: '#F97316', label: 'Көтеріңкі (35-40%)' },
           { color: '#EF4444', label: 'Жоғары (> 40%)' },
         ].map((item, i) => (
           <div key={i} className="flex items-center gap-1.5">

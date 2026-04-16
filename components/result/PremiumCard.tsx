@@ -7,7 +7,7 @@ interface PremiumCardProps {
 }
 
 function formatCurrency(value: number): string {
-  return value.toLocaleString('ru-RU').replace(/,/g, ' ') + ' ₸';
+  return value.toLocaleString('kk-KZ').replace(/,/g, ' ') + ' ₸';
 }
 
 export default function PremiumCard({

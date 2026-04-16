@@ -8,11 +8,11 @@ import { INSURANCE_TYPES } from '@/lib/constants';
 const GOAL_OPTIONS = [
   { value: 'savings', label: 'Жинақтау' },
   { value: 'family_protection', label: 'Отбасын қорғау' },
-  { value: 'pension', label: 'Зейнетақы' },
+  { value: 'pension', label: 'Зейнет' },
 ] as const;
 
 function formatTenge(value: number): string {
-  return new Intl.NumberFormat('ru-RU').format(value) + ' ₸';
+  return new Intl.NumberFormat('kk-KZ').format(value) + ' ₸';
 }
 
 function formatUsd(tenge: number): string {

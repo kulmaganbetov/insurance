@@ -13,12 +13,12 @@ import {
 } from 'lucide-react';
 
 const DISEASES = [
-  { id: 'hypertension', label: 'Гипертония (қан қысымы > 140/90)', icon: HeartPulse },
-  { id: 'diabetes', label: '2 типті қант диабеті', icon: Droplets },
-  { id: 'cardiovascular', label: 'Жүрек-қан тамырлары аурулары', icon: Heart },
-  { id: 'heart_attack_stroke', label: 'Инфаркт немесе инсульт', icon: Activity },
-  { id: 'oncology', label: 'Онкология (анамнезде)', icon: Ribbon },
-  { id: 'chronic_lung', label: 'Созылмалы өкпе аурулары', icon: Wind },
+  { id: 'hypertension', label: 'Гипертония', icon: HeartPulse },
+  { id: 'diabetes', label: '2-типті қант диабеті', icon: Droplets },
+  { id: 'cardiovascular', label: 'Жүрек-қантамыр аурулары', icon: Heart },
+  { id: 'heart_attack_stroke', label: 'Инфаркт немесе инсульт болған', icon: Activity },
+  { id: 'oncology', label: 'Анамнездегі онкология', icon: Ribbon },
+  { id: 'chronic_lung', label: 'Өкпенің созылмалы аурулары', icon: Wind },
   { id: 'chronic_kidney', label: 'Созылмалы бүйрек жеткіліксіздігі', icon: CircleDot },
 ] as const;
 
@@ -121,7 +121,7 @@ export default function StepTwo() {
       {/* Blood pressure */}
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-3">
-          Артериялық қан қысымы (мм сын.бағ.)
+          Артериялық қысым (мм сын.бағ.)
         </label>
         <div className="grid grid-cols-2 gap-4">
           <div>

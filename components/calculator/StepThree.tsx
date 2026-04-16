@@ -8,13 +8,13 @@ const SMOKING_OPTIONS = [
   { value: 'none', label: 'Шекпеймін' },
   { value: 'moderate', label: 'Орташа' },
   { value: 'active', label: 'Белсенді' },
-  { value: 'quit_recent', label: '< 5 жыл бұрын тастадым' },
+  { value: 'quit_recent', label: 'Тастағаныма < 5 жыл' },
 ] as const;
 
 const ALCOHOL_OPTIONS = [
   { value: 'none', label: 'Қолданбаймын' },
   { value: 'moderate', label: 'Орташа' },
-  { value: 'abuse', label: 'Шектен тыс' },
+  { value: 'abuse', label: 'Шамадан тыс қолданамын' },
 ] as const;
 
 const ACTIVITY_OPTIONS = [
@@ -24,9 +24,9 @@ const ACTIVITY_OPTIONS = [
 ] as const;
 
 const HEREDITY_OPTIONS = [
-  { id: 'parent_cvd', label: 'Ата-ана 60 жасқа дейін ЖҚА-дан қайтыс болды' },
-  { id: 'parent_oncology', label: 'Ата-ана 60 жасқа дейін онкологиядан қайтыс болды' },
-  { id: 'parent_diabetes', label: 'Ата-анасының екеуінде де диабет' },
+  { id: 'parent_cvd', label: 'Ата-ананың бірі 60 жасқа дейін ЖҚА-дан қайтыс болған' },
+  { id: 'parent_oncology', label: 'Ата-ананың бірі 60 жасқа дейін онкологиядан қайтыс болған' },
+  { id: 'parent_diabetes', label: 'Екі ата-анада да диабет бар' },
 ] as const;
 
 interface RadioCardGroupProps {
@@ -98,7 +98,7 @@ export default function StepThree() {
         name="smoking"
         options={SMOKING_OPTIONS}
         icon={<Cigarette className="w-4 h-4 text-emerald-400" />}
-        title="Темекі шегу"
+        title="Темекі"
       />
 
       <RadioCardGroup
@@ -112,14 +112,14 @@ export default function StepThree() {
         name="activity"
         options={ACTIVITY_OPTIONS}
         icon={<Dumbbell className="w-4 h-4 text-emerald-400" />}
-        title="Физикалық белсенділік"
+        title="Дене белсенділігі"
       />
 
       {/* Heredity */}
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
           <Dna className="w-4 h-4 text-emerald-400" />
-          Тұқым қуалау
+          Тұқымқуалаушылық
         </label>
         <div className="space-y-3">
           {HEREDITY_OPTIONS.map((opt) => {

@@ -25,7 +25,7 @@ export default function ComparisonChart({
 
   const data = [
     {
-      name: 'Премия',
+      name: 'Сыйлықақы',
       'Дәстүрлі актуарлық': traditional_premium,
       'AI-түзетілген': ai_adjusted_premium,
     },
@@ -75,7 +75,7 @@ export default function ComparisonChart({
                 color: '#F1F5F9',
               }}
               formatter={(value: number) => [
-                `${value.toLocaleString('ru-RU')} ₸`,
+                `${value.toLocaleString('kk-KZ')} ₸`,
               ]}
               labelStyle={{ color: '#94A3B8' }}
             />

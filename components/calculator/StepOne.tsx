@@ -109,13 +109,13 @@ export default function StepOne() {
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-2">
           <MapPin className="w-4 h-4 text-emerald-400" />
-          Аймақ
+          Өңір
         </label>
         <select
           {...register('region')}
           className="w-full bg-[#1E293B] border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all appearance-none cursor-pointer"
         >
-          <option value="">Аймақты таңдаңыз</option>
+          <option value="">Өңірді таңдаңыз</option>
           {REGIONS.map((r) => (
             <option key={r.value} value={r.value}>
               {r.label}
@@ -130,14 +130,14 @@ export default function StepOne() {
       {/* Height & Weight with BMI */}
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-3">
-          Бой және салмақ
+          Бойы мен салмағы
         </label>
         <div className="grid grid-cols-2 gap-4">
           <div className="relative">
             <Ruler className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
               type="number"
-              placeholder="Бой, см"
+              placeholder="Бойы, см"
               {...register('height', { valueAsNumber: true })}
               className="w-full bg-[#1E293B] border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             />
@@ -149,7 +149,7 @@ export default function StepOne() {
             <Weight className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
               type="number"
-              placeholder="Салмақ, кг"
+              placeholder="Салмағы, кг"
               {...register('weight', { valueAsNumber: true })}
               className="w-full bg-[#1E293B] border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             />
@@ -167,7 +167,7 @@ export default function StepOne() {
             className="mt-4 bg-[#1E293B] border border-gray-700 rounded-xl p-4 flex items-center justify-between"
           >
             <div>
-              <span className="text-sm text-gray-400">Дене салмағының индексі (ДСИ)</span>
+              <span className="text-sm text-gray-400">Дене салмағы индексі (ДСИ)</span>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="text-2xl font-bold text-white">{bmi.toFixed(1)}</span>
                 {bmiCategory && (
