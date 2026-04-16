@@ -105,17 +105,17 @@ function renderMarkdown(text: string): string {
     // links [text](url)
     r = r.replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
-      '<a href="$2" class="text-emerald-400 underline underline-offset-2 hover:text-emerald-300">$1</a>'
+      '<a href="$2" class="text-emerald-600 underline underline-offset-2 hover:text-emerald-700">$1</a>'
     );
     // inline code
     r = r.replace(
       /`([^`]+)`/g,
-      '<code class="px-1.5 py-0.5 rounded bg-slate-800 text-emerald-300 text-[0.9em] font-mono">$1</code>'
+      '<code class="px-1.5 py-0.5 rounded bg-slate-100 text-emerald-700 text-[0.9em] font-mono">$1</code>'
     );
     // bold
-    r = r.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
+    r = r.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-slate-900 font-semibold">$1</strong>');
     // italic
-    r = r.replace(/\*([^*]+)\*/g, '<em class="text-slate-200">$1</em>');
+    r = r.replace(/\*([^*]+)\*/g, '<em class="text-slate-700">$1</em>');
     return r;
   };
 
@@ -124,15 +124,15 @@ function renderMarkdown(text: string): string {
     if (line.startsWith('### ')) {
       closeList();
       closeQuote();
-      out.push(`<h3 class="text-white font-semibold text-base mt-4 mb-2">${inline(line.slice(4))}</h3>`);
+      out.push(`<h3 class="text-slate-900 font-semibold text-base mt-4 mb-2">${inline(line.slice(4))}</h3>`);
     } else if (line.startsWith('## ')) {
       closeList();
       closeQuote();
-      out.push(`<h2 class="text-white font-bold text-lg mt-4 mb-2">${inline(line.slice(3))}</h2>`);
+      out.push(`<h2 class="text-slate-900 font-bold text-lg mt-4 mb-2">${inline(line.slice(3))}</h2>`);
     } else if (line.startsWith('> ')) {
       closeList();
       if (!inQuote) {
-        out.push('<blockquote class="border-l-2 border-emerald-500/40 bg-emerald-500/5 px-4 py-2 my-2 rounded-r-lg text-slate-300 italic">');
+        out.push('<blockquote class="border-l-2 border-emerald-500 bg-emerald-50 px-4 py-2 my-2 rounded-r-lg text-slate-700 italic">');
         inQuote = true;
       }
       out.push(inline(line.slice(2)));
@@ -142,7 +142,7 @@ function renderMarkdown(text: string): string {
         out.push('<ul class="space-y-1 my-2 ml-1">');
         inList = true;
       }
-      out.push(`<li class="flex items-start gap-2 text-slate-300"><span class="text-emerald-400 mt-1">•</span><span>${inline(line.replace(/^[-•*]\s+/, ''))}</span></li>`);
+      out.push(`<li class="flex items-start gap-2 text-slate-700"><span class="text-emerald-600 mt-1">•</span><span>${inline(line.replace(/^[-•*]\s+/, ''))}</span></li>`);
     } else if (line === '') {
       closeList();
       closeQuote();
@@ -150,7 +150,7 @@ function renderMarkdown(text: string): string {
     } else {
       closeList();
       closeQuote();
-      out.push(`<p class="text-slate-300 leading-relaxed">${inline(line)}</p>`);
+      out.push(`<p class="text-slate-700 leading-relaxed">${inline(line)}</p>`);
     }
   }
   closeList();
@@ -291,7 +291,7 @@ export default function ConsultantPage() {
             <Sparkles className="w-4 h-4" />
             GPT-4o mini негізінде
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">
+          <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-3">
             AI-<span className="gradient-text">кеңесші</span>
           </h1>
           <p className="text-slate-400 max-w-2xl mx-auto">
@@ -307,13 +307,13 @@ export default function ConsultantPage() {
           className="relative rounded-3xl overflow-hidden border border-slate-700/50 bg-gradient-to-b from-slate-900/80 to-slate-900/40 backdrop-blur-xl shadow-2xl shadow-emerald-500/5"
         >
           {/* Header bar */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-700/50 bg-slate-900/60">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 bg-white/70">
             <div className="flex items-center gap-3">
               <div className="relative">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/30">
                   <Bot className="w-5 h-5 text-white" />
                 </div>
-                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-slate-900 animate-pulse" />
+                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white animate-pulse" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
@@ -329,7 +329,7 @@ export default function ConsultantPage() {
             {hasConversation && (
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors"
+                className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-900 px-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors"
                 title="Жаңа сөйлесу"
               >
                 <MessageSquarePlus className="w-4 h-4" />
@@ -356,7 +356,7 @@ export default function ConsultantPage() {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-2">Сәлеметсіз бе! 👋</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Сәлеметсіз бе! 👋</h3>
                 <p className="text-slate-400 text-center max-w-md mb-8 text-sm">
                   Мен — LifeGuard KZ AI-кеңесшісімін. Сақтандыру, актуарлық есептеулер және
                   ҚР заңнамасы бойынша сұрақтарыңызға жауап беремін.
@@ -377,7 +377,7 @@ export default function ConsultantPage() {
                         className={`group relative overflow-hidden rounded-2xl p-4 text-left border ${q.border} bg-gradient-to-br ${q.gradient} hover:scale-[1.02] transition-all`}
                       >
                         <div className="flex items-start gap-3">
-                          <div className={`flex-shrink-0 w-9 h-9 rounded-xl bg-slate-900/40 backdrop-blur flex items-center justify-center ${q.iconColor}`}>
+                          <div className={`flex-shrink-0 w-9 h-9 rounded-xl bg-white/80 backdrop-blur flex items-center justify-center ${q.iconColor}`}>
                             <q.icon className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
@@ -419,7 +419,7 @@ export default function ConsultantPage() {
                         className={`relative rounded-2xl px-4 py-3 ${
                           msg.role === 'user'
                             ? 'bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-tr-sm shadow-lg shadow-emerald-500/20'
-                            : 'bg-slate-800/80 border border-slate-700/50 rounded-tl-sm'
+                            : 'bg-white border border-slate-200 shadow-sm rounded-tl-sm'
                         }`}
                       >
                         {msg.role === 'assistant' ? (
@@ -460,8 +460,8 @@ export default function ConsultantPage() {
                     </div>
 
                     {msg.role === 'user' && (
-                      <div className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-700 flex items-center justify-center order-3">
-                        <User className="w-4 h-4 text-slate-300" />
+                      <div className="flex-shrink-0 w-8 h-8 rounded-xl bg-slate-200 flex items-center justify-center order-3">
+                        <User className="w-4 h-4 text-slate-600" />
                       </div>
                     )}
                   </motion.div>
@@ -476,7 +476,7 @@ export default function ConsultantPage() {
                     <div className="flex-shrink-0 w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-md shadow-emerald-500/20">
                       <Bot className="w-4 h-4 text-white" />
                     </div>
-                    <div className="bg-slate-800/80 border border-slate-700/50 rounded-2xl rounded-tl-sm px-5 py-4">
+                    <div className="bg-white border border-slate-200 shadow-sm rounded-2xl rounded-tl-sm px-5 py-4">
                       <TypingDots />
                     </div>
                   </motion.div>
@@ -487,7 +487,7 @@ export default function ConsultantPage() {
           </div>
 
           {/* Input area */}
-          <div className="border-t border-slate-700/50 bg-slate-900/60 px-4 py-4">
+          <div className="border-t border-slate-200 bg-white/70 px-4 py-4">
             <form onSubmit={handleSubmit} className="flex items-end gap-2">
               <div className="flex-1 relative">
                 <textarea
@@ -498,10 +498,10 @@ export default function ConsultantPage() {
                   placeholder="Сұрағыңызды жазыңыз..."
                   rows={1}
                   disabled={loading}
-                  className="w-full resize-none rounded-2xl bg-slate-800/60 border border-slate-700 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 px-4 py-3 pr-12 text-white placeholder:text-slate-500 text-sm outline-none transition-all disabled:opacity-50"
+                  className="w-full resize-none rounded-2xl bg-slate-50 border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 px-4 py-3 pr-12 text-slate-900 placeholder:text-slate-400 text-sm outline-none transition-all disabled:opacity-50"
                   style={{ minHeight: '48px', maxHeight: '160px' }}
                 />
-                <div className="absolute bottom-2 right-2 text-[10px] text-slate-600 pointer-events-none hidden md:block">
+                <div className="absolute bottom-2 right-2 text-[10px] text-slate-400 pointer-events-none hidden md:block">
                   Enter ↵
                 </div>
               </div>
@@ -519,7 +519,7 @@ export default function ConsultantPage() {
               </button>
             </form>
 
-            <p className="text-[10px] text-slate-600 text-center mt-2">
+            <p className="text-[10px] text-slate-500 text-center mt-2">
               AI дәлсіздіктерді қамтуы мүмкін. Нақты кеңес алу үшін лицензияланған сақтандыру компаниясына хабарласыңыз.
             </p>
           </div>
@@ -534,21 +534,21 @@ export default function ConsultantPage() {
         >
           <Link
             href="/calculator"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/40 hover:bg-slate-800/60 border border-slate-700/50 hover:border-emerald-500/30 text-slate-300 hover:text-white text-sm transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 shadow-sm hover:border-emerald-400 text-slate-700 hover:text-slate-900 text-sm transition-all"
           >
             <Shield className="w-4 h-4" />
             Калькулятор
           </Link>
           <Link
             href="/about"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/40 hover:bg-slate-800/60 border border-slate-700/50 hover:border-emerald-500/30 text-slate-300 hover:text-white text-sm transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 shadow-sm hover:border-emerald-400 text-slate-700 hover:text-slate-900 text-sm transition-all"
           >
             <BookOpen className="w-4 h-4" />
             Әдіснама
           </Link>
           <Link
             href="/dashboard"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/40 hover:bg-slate-800/60 border border-slate-700/50 hover:border-emerald-500/30 text-slate-300 hover:text-white text-sm transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 shadow-sm hover:border-emerald-400 text-slate-700 hover:text-slate-900 text-sm transition-all"
           >
             <TrendingUp className="w-4 h-4" />
             Талдау

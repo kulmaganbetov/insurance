@@ -183,14 +183,14 @@ export default function CalculatorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] py-8 px-4">
+    <div className="min-h-screen bg-slate-50 py-8 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
             Сақтандыру калькуляторы
           </h1>
-          <p className="text-slate-400">Жеке есептеу үшін сауалнаманы толтырыңыз</p>
+          <p className="text-slate-600">Жеке есептеу үшін сауалнаманы толтырыңыз</p>
         </div>
 
         {/* Progress bar */}
@@ -203,8 +203,8 @@ export default function CalculatorPage() {
                     i < step
                       ? 'bg-emerald-500 text-white'
                       : i === step
-                      ? 'bg-emerald-500/20 text-emerald-400 ring-2 ring-emerald-500'
-                      : 'bg-slate-700 text-slate-500'
+                      ? 'bg-emerald-500/20 text-emerald-600 ring-2 ring-emerald-500'
+                      : 'bg-slate-200 text-slate-500'
                   }`}
                 >
                   {i < step ? <CheckCircle2 className="w-4 h-4" /> : i + 1}
@@ -212,7 +212,7 @@ export default function CalculatorPage() {
                 {i < STEPS.length - 1 && (
                   <div
                     className={`hidden sm:block w-16 md:w-24 h-0.5 mx-2 transition-colors ${
-                      i < step ? 'bg-emerald-500' : 'bg-slate-700'
+                      i < step ? 'bg-emerald-500' : 'bg-slate-200'
                     }`}
                   />
                 )}
@@ -220,7 +220,7 @@ export default function CalculatorPage() {
             ))}
           </div>
           <div className="text-center">
-            <span className="text-sm text-slate-400">
+            <span className="text-sm text-slate-600">
               {STEPS.length}-ден {step + 1}-қадам: {STEPS[step].title}
             </span>
           </div>
@@ -244,7 +244,7 @@ export default function CalculatorPage() {
                 type="button"
                 onClick={prevStep}
                 disabled={step === 0}
-                className="flex items-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 disabled:opacity-30 disabled:hover:bg-slate-700 text-white rounded-xl transition-all text-sm font-medium"
+                className="flex items-center gap-2 px-6 py-3 bg-slate-200 hover:bg-slate-300 disabled:opacity-30 disabled:hover:bg-slate-200 text-slate-900 rounded-xl transition-all text-sm font-medium"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Артқа
@@ -289,11 +289,11 @@ export default function CalculatorPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-[#0F172A]/90 backdrop-blur-sm"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-slate-50/90 backdrop-blur-sm"
             >
               <div className="text-center">
                 <div className="relative w-20 h-20 mx-auto mb-6">
-                  <div className="absolute inset-0 rounded-full border-4 border-slate-700" />
+                  <div className="absolute inset-0 rounded-full border-4 border-slate-200" />
                   <div className="absolute inset-0 rounded-full border-4 border-emerald-500 border-t-transparent animate-spin" />
                 </div>
                 <AnimatePresence mode="wait">
@@ -302,7 +302,7 @@ export default function CalculatorPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="text-white text-lg font-medium"
+                    className="text-slate-900 text-lg font-medium"
                   >
                     {LOADING_MESSAGES[loadingMsgIndex]}
                   </motion.p>

@@ -43,7 +43,7 @@ export default function StepFour() {
       {/* Insurance Type */}
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-4">
-          <Shield className="w-4 h-4 text-emerald-400" />
+          <Shield className="w-4 h-4 text-emerald-600" />
           Сақтандыру түрі
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -57,7 +57,7 @@ export default function StepFour() {
               className={`p-4 rounded-xl border-2 text-left transition-all cursor-pointer ${
                 insuranceType === type.value
                   ? 'border-emerald-500 bg-emerald-500/10'
-                  : 'border-gray-700 bg-[#1E293B] hover:border-gray-600'
+                  : 'border-slate-200 bg-white hover:border-emerald-400 hover:shadow-md'
               }`}
             >
               <span
@@ -80,10 +80,10 @@ export default function StepFour() {
       <div>
         <label className="flex items-center justify-between text-sm font-medium text-gray-300 mb-3">
           <span className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-emerald-400" />
+            <Clock className="w-4 h-4 text-emerald-600" />
             Сақтандыру мерзімі
           </span>
-          <span className="text-2xl font-bold text-emerald-400">{term} жыл</span>
+          <span className="text-2xl font-bold text-emerald-600">{term} жыл</span>
         </label>
         <input
           type="range"
@@ -107,12 +107,12 @@ export default function StepFour() {
       <div>
         <label className="flex items-center justify-between text-sm font-medium text-gray-300 mb-1">
           <span className="flex items-center gap-2">
-            <Banknote className="w-4 h-4 text-emerald-400" />
+            <Banknote className="w-4 h-4 text-emerald-600" />
             Сақтандыру сомасы
           </span>
         </label>
         <div className="flex items-baseline justify-between mb-3">
-          <span className="text-2xl font-bold text-emerald-400">{formatTenge(insuranceSum)}</span>
+          <span className="text-2xl font-bold text-emerald-600">{formatTenge(insuranceSum)}</span>
           <span className="text-sm text-gray-500">{formatUsd(insuranceSum)}</span>
         </div>
         <input
@@ -136,7 +136,7 @@ export default function StepFour() {
       {/* Goal */}
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
-          <Target className="w-4 h-4 text-emerald-400" />
+          <Target className="w-4 h-4 text-emerald-600" />
           Сақтандыру мақсаты
         </label>
         <div className="grid grid-cols-3 gap-3">
@@ -150,7 +150,7 @@ export default function StepFour() {
               className={`py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all cursor-pointer ${
                 goal === opt.value
                   ? 'border-emerald-500 bg-emerald-500/10 text-emerald-300'
-                  : 'border-gray-700 bg-[#1E293B] text-gray-400 hover:border-gray-600'
+                  : 'border-slate-200 bg-white text-slate-600 hover:border-emerald-400'
               }`}
             >
               {opt.label}

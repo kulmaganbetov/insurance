@@ -63,15 +63,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="kk">
-      <body className="min-h-screen bg-[#0F172A] font-sans text-gray-100 flex flex-col">
+      <body className="min-h-screen bg-slate-50 font-sans text-slate-900 flex flex-col">
         {/* ── Navigation ───────────────────────────────────────────── */}
-        <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0F172A]/80 backdrop-blur-xl">
+        <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl shadow-sm shadow-slate-900/5">
           <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/10 ring-1 ring-emerald-500/20 transition-all group-hover:bg-emerald-500/20">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/10 ring-1 ring-emerald-500/30 transition-all group-hover:bg-emerald-500/20">
                 <svg
-                  className="h-5 w-5 text-emerald-400"
+                  className="h-5 w-5 text-emerald-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
@@ -85,8 +85,8 @@ export default function RootLayout({
                 </svg>
               </span>
               <span className="text-lg font-bold tracking-tight">
-                <span className="text-white">LifeGuard</span>{' '}
-                <span className="text-emerald-400">KZ</span>
+                <span className="text-slate-900">LifeGuard</span>{' '}
+                <span className="text-emerald-600">KZ</span>
               </span>
             </Link>
 
@@ -96,8 +96,8 @@ export default function RootLayout({
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="rounded-lg px-4 py-2 text-sm font-medium text-gray-300
-                               transition-colors hover:bg-white/5 hover:text-white"
+                    className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600
+                               transition-colors hover:bg-slate-100 hover:text-slate-900"
                   >
                     {link.label}
                   </Link>
@@ -108,7 +108,7 @@ export default function RootLayout({
             {/* Mobile menu button */}
             <button
               className="inline-flex md:hidden items-center justify-center rounded-lg p-2
-                         text-gray-400 hover:bg-white/5 hover:text-white transition-colors"
+                         text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
               aria-label="Мәзір"
               type="button"
             >
@@ -123,7 +123,7 @@ export default function RootLayout({
         <main className="flex-1 relative z-10">{children}</main>
 
         {/* ── Footer ───────────────────────────────────────────────── */}
-        <footer className="relative z-10 border-t border-white/5 bg-[#0F172A]">
+        <footer className="relative z-10 border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
             <div className="grid gap-8 md:grid-cols-3">
               {/* Brand */}
@@ -131,7 +131,7 @@ export default function RootLayout({
                 <div className="flex items-center gap-2 mb-3">
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
                     <svg
-                      className="h-4 w-4 text-emerald-400"
+                      className="h-4 w-4 text-emerald-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
@@ -144,24 +144,24 @@ export default function RootLayout({
                       />
                     </svg>
                   </span>
-                  <span className="font-bold text-white">
-                    LifeGuard <span className="text-emerald-400">KZ</span>
+                  <span className="font-bold text-slate-900">
+                    LifeGuard <span className="text-emerald-600">KZ</span>
                   </span>
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   Қазақстандағы өмірді сақтандыру тәуекелдерін AI бағалау платформасы.
                 </p>
               </div>
 
               {/* Navigation */}
               <div>
-                <h4 className="text-sm font-semibold text-gray-300 mb-3">Бөлімдер</h4>
+                <h4 className="text-sm font-semibold text-slate-800 mb-3">Бөлімдер</h4>
                 <ul className="space-y-2">
                   {NAV_LINKS.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-sm text-gray-500 hover:text-emerald-400 transition-colors"
+                        className="text-sm text-slate-600 hover:text-emerald-600 transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -172,15 +172,15 @@ export default function RootLayout({
 
               {/* Disclaimer */}
               <div>
-                <h4 className="text-sm font-semibold text-gray-300 mb-3">Жауапкершіліктен бас тарту</h4>
-                <p className="text-xs text-gray-500 leading-relaxed">
+                <h4 className="text-sm font-semibold text-slate-800 mb-3">Жауапкершіліктен бас тарту</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Есептеу нәтижелері тек ақпараттық сипатта және сақтандыру шартын жасасуға оферта немесе ұсыныс болып табылмайды. Нақты шарттарды алу үшін Қазақстан Республикасының лицензияланған сақтандыру компаниясына хабарласыңыз. Платформа AI модельдерін пайдаланады, олар дәлсіздіктерді қамтуы мүмкін.
                 </p>
               </div>
             </div>
 
-            <div className="mt-8 border-t border-white/5 pt-6 text-center">
-              <p className="text-xs text-gray-600">
+            <div className="mt-8 border-t border-slate-200 pt-6 text-center">
+              <p className="text-xs text-slate-500">
                 &copy; {new Date().getFullYear()} LifeGuard KZ. Барлық құқықтар қорғалған.
                 Қаржылық кеңес болып табылмайды.
               </p>

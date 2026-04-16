@@ -40,7 +40,7 @@ export default function RegionHeatmap() {
         <path
           d="M 20 80 L 60 40 L 120 30 L 180 40 L 240 25 L 300 35 L 360 50 L 400 80 L 410 130 L 400 160 L 380 180 L 390 220 L 370 260 L 340 290 L 300 310 L 260 320 L 220 330 L 180 330 L 140 310 L 100 290 L 60 280 L 30 260 L 15 220 L 10 170 L 15 120 Z"
           fill="#1a2744"
-          stroke="#334155"
+          stroke="#E2E8F0"
           strokeWidth="1.5"
         />
 
@@ -86,9 +86,9 @@ export default function RegionHeatmap() {
 
       {/* Tooltip */}
       {hovered && (
-        <div className="absolute top-4 right-4 bg-[#0F172A] border border-slate-700 rounded-xl p-4 shadow-xl">
-          <p className="text-white font-semibold">{hovered.name}</p>
-          <p className="text-slate-400 text-sm">
+        <div className="absolute top-4 right-4 bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-xl">
+          <p className="text-slate-900 font-semibold">{hovered.name}</p>
+          <p className="text-slate-600 text-sm">
             Орташа тәуекел:{' '}
             <span style={{ color: getRiskColor(hovered.risk) }} className="font-medium">
               {hovered.risk}%

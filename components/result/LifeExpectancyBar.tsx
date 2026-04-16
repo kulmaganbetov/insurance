@@ -46,8 +46,8 @@ export default function LifeExpectancyBar({
   }
 
   return (
-    <div className="bg-[#1E293B] rounded-2xl p-6">
-      <h3 className="text-white text-lg font-semibold mb-6">
+    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <h3 className="text-slate-900 text-lg font-semibold mb-6">
         Күтілетін өмір сүру ұзақтығы
       </h3>
 

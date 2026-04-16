@@ -68,7 +68,7 @@ const SOURCES = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0F172A] py-12 px-4">
+    <div className="min-h-screen bg-slate-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial="hidden"
@@ -77,10 +77,10 @@ export default function AboutPage() {
         >
           {/* Header */}
           <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="text-center mb-16">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               <span className="gradient-text">LifeGuard KZ</span> әдіснамасы туралы
             </h1>
-            <p className="text-slate-400 max-w-2xl mx-auto">
+            <p className="text-slate-600 max-w-2xl mx-auto">
               Өмірді сақтандыру тәуекелдерін бағалау платформасының ғылыми негізі
             </p>
           </motion.div>
@@ -91,10 +91,10 @@ export default function AboutPage() {
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
                 <BookOpen className="w-5 h-5 text-emerald-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Ғылыми база</h2>
+              <h2 className="text-2xl font-bold text-slate-900">Ғылыми база</h2>
             </div>
             <div className="glass-card p-6 space-y-6">
-              <p className="text-slate-300 leading-relaxed">
+              <p className="text-slate-700 leading-relaxed">
                 Платформа сақтандыру сыйлықақыларын есептеуге арналған классикалық актуарлық
                 формулаларды пайдаланады. Барлық есептеулер коммутациялық сандар мен өлім-жітім
                 кестелеріне негізделген.
@@ -102,7 +102,7 @@ export default function AboutPage() {
 
               {/* Formulas */}
               <div className="space-y-4">
-                <h3 className="text-white font-semibold">Негізгі формулалар</h3>
+                <h3 className="text-slate-900 font-semibold">Негізгі формулалар</h3>
                 {[
                   { name: 'Коммутациялық сандар', formula: 'Dₓ = lₓ · v^x,  мұнда v = 1/(1+i),  i = 5%' },
                   { name: 'Өмір сүруге сақтандыру', formula: 'ₙEₓ = D(x+n) / Dₓ' },
@@ -110,16 +110,16 @@ export default function AboutPage() {
                   { name: 'Мерзімді рента', formula: 'ₙ|ä\'ₓ = (Nₓ - N(x+n)) / Dₓ' },
                   { name: 'Брутто-тариф', formula: 'Тб = (nE + α + (γ + δ) · ä) / (1 - β)' },
                 ].map((f, i) => (
-                  <div key={i} className="bg-[#0F172A] rounded-xl p-4 border border-slate-700/50">
-                    <p className="text-slate-400 text-xs mb-1">{f.name}</p>
-                    <p className="text-emerald-400 font-mono text-sm">{f.formula}</p>
+                  <div key={i} className="bg-slate-100 rounded-xl p-4 border border-slate-200">
+                    <p className="text-slate-500 text-xs mb-1">{f.name}</p>
+                    <p className="text-emerald-600 font-mono text-sm">{f.formula}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="bg-[#0F172A] rounded-xl p-4 border border-slate-700/50">
-                <p className="text-slate-400 text-xs mb-1">Брутто-тариф параметрлері</p>
-                <p className="text-slate-300 text-sm font-mono">
+              <div className="bg-slate-100 rounded-xl p-4 border border-slate-200">
+                <p className="text-slate-500 text-xs mb-1">Брутто-тариф параметрлері</p>
+                <p className="text-slate-700 text-sm font-mono">
                   α = 0.05 (біржолғы шығындар) · β = 0.04 (жарна жинау) · γ = 0.02 (басқару) · δ = 0.03 (пайда)
                 </p>
               </div>
@@ -132,10 +132,10 @@ export default function AboutPage() {
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
                 <Database className="w-5 h-5 text-blue-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Деректер</h2>
+              <h2 className="text-2xl font-bold text-slate-900">Деректер</h2>
             </div>
             <div className="glass-card p-6">
-              <p className="text-slate-300 leading-relaxed mb-6">
+              <p className="text-slate-700 leading-relaxed mb-6">
                 Қазақстан Республикасы халқының өлім-жітім кестесі пайдаланылады
                 (ҚР Ұлтстатистика бюросы). lₓ мәні — 100 000 туылғандардан
                 x жасқа дейін тірі қалғандардың саны.
@@ -143,18 +143,18 @@ export default function AboutPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-slate-700">
-                      <th className="text-left text-slate-400 py-2 px-3 font-medium">Жас (x)</th>
-                      <th className="text-right text-slate-400 py-2 px-3 font-medium">lₓ</th>
-                      <th className="text-right text-slate-400 py-2 px-3 font-medium">dₓ</th>
+                    <tr className="border-b border-slate-200">
+                      <th className="text-left text-slate-600 py-2 px-3 font-medium">Жас (x)</th>
+                      <th className="text-right text-slate-600 py-2 px-3 font-medium">lₓ</th>
+                      <th className="text-right text-slate-600 py-2 px-3 font-medium">dₓ</th>
                     </tr>
                   </thead>
                   <tbody>
                     {MORTALITY_TABLE.map((row, i) => (
-                      <tr key={i} className={`border-b border-slate-700/50 ${i % 2 === 0 ? 'bg-slate-800/30' : ''}`}>
-                        <td className="text-slate-300 py-2 px-3">{row.x}</td>
-                        <td className="text-white text-right py-2 px-3 font-mono">{row.lx.toLocaleString('ru-RU')}</td>
-                        <td className="text-slate-400 text-right py-2 px-3 font-mono">
+                      <tr key={i} className={`border-b border-slate-200 ${i % 2 === 0 ? 'bg-slate-100/60' : ''}`}>
+                        <td className="text-slate-700 py-2 px-3">{row.x}</td>
+                        <td className="text-slate-900 text-right py-2 px-3 font-mono">{row.lx.toLocaleString('ru-RU')}</td>
+                        <td className="text-slate-600 text-right py-2 px-3 font-mono">
                           {i < MORTALITY_TABLE.length - 1
                             ? (row.lx - MORTALITY_TABLE[i + 1].lx).toLocaleString('ru-RU')
                             : '2 100'}
@@ -173,14 +173,14 @@ export default function AboutPage() {
               <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
                 <Brain className="w-5 h-5 text-purple-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">AI-модель</h2>
+              <h2 className="text-2xl font-bold text-slate-900">AI-модель</h2>
             </div>
             <div className="glass-card p-6 space-y-4">
-              <p className="text-slate-300 leading-relaxed">
-                Платформа OpenAI-дің <span className="text-emerald-400 font-semibold">GPT-4o mini</span> моделімен
+              <p className="text-slate-700 leading-relaxed">
+                Платформа OpenAI-дің <span className="text-emerald-600 font-semibold">GPT-4o mini</span> моделімен
                 интеграцияланған. Нейрожелі мынадай актуарий рөлін атқарады:
               </p>
-              <ul className="space-y-3 text-slate-300">
+              <ul className="space-y-3 text-slate-700">
                 {[
                   'Аралық жастар үшін өлім-жітім кестесінің мәндерін интерполяциялайды',
                   'Dₓ, Nₓ, Mₓ коммутациялық сандарын есептейді',
@@ -190,13 +190,13 @@ export default function AboutPage() {
                   'Факторларды ескере отырып, күтілетін өмір сүру ұзақтығын бағалайды',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-emerald-400 mt-1">•</span>
+                    <span className="text-emerald-600 mt-1">•</span>
                     {item}
                   </li>
                 ))}
               </ul>
-              <div className="bg-[#0F172A] rounded-xl p-4 border border-slate-700/50">
-                <p className="text-slate-400 text-xs mb-1">Модель параметрлері</p>
+              <div className="bg-slate-100 rounded-xl p-4 border border-slate-200">
+                <p className="text-slate-500 text-xs mb-1">Модель параметрлері</p>
                 <p className="text-slate-300 text-sm">
                   Model: gpt-4o · Temperature: 0.1 · Response format: JSON · Промпт: ~2500 токен
                 </p>
@@ -210,26 +210,26 @@ export default function AboutPage() {
               <div className="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center">
                 <Calculator className="w-5 h-5 text-yellow-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Түзету коэффициенттері</h2>
+              <h2 className="text-2xl font-bold text-slate-900">Түзету коэффициенттері</h2>
             </div>
             <div className="space-y-6">
               {RISK_COEFFICIENTS.map((group, gi) => (
                 <div key={gi} className="glass-card p-6">
-                  <h3 className="text-white font-semibold mb-4">{group.category}</h3>
+                  <h3 className="text-slate-900 font-semibold mb-4">{group.category}</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b border-slate-700">
-                          <th className="text-left text-slate-400 py-2 px-3 font-medium">Фактор</th>
-                          <th className="text-right text-slate-400 py-2 px-3 font-medium">Түзету</th>
+                        <tr className="border-b border-slate-200">
+                          <th className="text-left text-slate-600 py-2 px-3 font-medium">Фактор</th>
+                          <th className="text-right text-slate-600 py-2 px-3 font-medium">Түзету</th>
                         </tr>
                       </thead>
                       <tbody>
                         {group.factors.map((f, fi) => (
-                          <tr key={fi} className="border-b border-slate-700/50">
-                            <td className="text-slate-300 py-2 px-3">{f.name}</td>
+                          <tr key={fi} className="border-b border-slate-200">
+                            <td className="text-slate-700 py-2 px-3">{f.name}</td>
                             <td className={`text-right py-2 px-3 font-medium font-mono ${
-                              f.value.startsWith('+') ? 'text-red-400'
+                              f.value.startsWith('+') ? 'text-red-600'
                               : f.value.startsWith('-') ? 'text-emerald-400'
                               : 'text-slate-400'
                             }`}>
@@ -251,13 +251,13 @@ export default function AboutPage() {
               <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center">
                 <FileText className="w-5 h-5 text-cyan-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Деректер көздері</h2>
+              <h2 className="text-2xl font-bold text-slate-900">Деректер көздері</h2>
             </div>
             <div className="glass-card p-6">
               <ol className="space-y-3">
                 {SOURCES.map((source, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-300 text-sm leading-relaxed">
-                    <span className="text-emerald-400 font-mono text-xs mt-0.5 flex-shrink-0">
+                  <li key={i} className="flex items-start gap-3 text-slate-700 text-sm leading-relaxed">
+                    <span className="text-emerald-600 font-mono text-xs mt-0.5 flex-shrink-0">
                       [{i + 1}]
                     </span>
                     {source}
@@ -270,7 +270,7 @@ export default function AboutPage() {
           {/* Algorithm steps */}
           <motion.section variants={fadeInUp} transition={{ duration: 0.5 }}>
             <div className="glass-card p-6">
-              <h3 className="text-white font-semibold mb-4">Есептеу алгоритмі (8 қадам)</h3>
+              <h3 className="text-slate-900 font-semibold mb-4">Есептеу алгоритмі (8 қадам)</h3>
               <div className="space-y-3">
                 {[
                   'Клиент деректерін алу (жасы, жынысы, аймағы, денсаулығы, өмір салты)',

@@ -70,7 +70,7 @@ export default function StepTwo() {
                 className={`flex items-center gap-3 p-4 rounded-xl border-2 text-left transition-all cursor-pointer ${
                   selected
                     ? 'border-emerald-500 bg-emerald-500/10'
-                    : 'border-gray-700 bg-[#1E293B] hover:border-gray-600'
+                    : 'border-slate-200 bg-white hover:border-emerald-400 hover:shadow-md'
                 }`}
               >
                 <div
@@ -80,7 +80,7 @@ export default function StepTwo() {
                 >
                   <Icon
                     className={`w-5 h-5 ${
-                      selected ? 'text-emerald-400' : 'text-gray-400'
+                      selected ? 'text-emerald-600' : 'text-gray-400'
                     }`}
                   />
                 </div>
@@ -130,7 +130,7 @@ export default function StepTwo() {
               type="number"
               placeholder="120"
               {...register('systolic', { valueAsNumber: true })}
-              className="w-full bg-[#1E293B] border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
+              className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all shadow-sm"
             />
             {errors.systolic && (
               <p className="text-red-400 text-xs mt-1">{errors.systolic.message as string}</p>
@@ -142,7 +142,7 @@ export default function StepTwo() {
               type="number"
               placeholder="80"
               {...register('diastolic', { valueAsNumber: true })}
-              className="w-full bg-[#1E293B] border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
+              className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all shadow-sm"
             />
             {errors.diastolic && (
               <p className="text-red-400 text-xs mt-1">{errors.diastolic.message as string}</p>

@@ -31,10 +31,10 @@ export default function ActuarialTable({ data }: ActuarialTableProps) {
   ];
 
   return (
-    <div className="bg-[#1E293B] rounded-2xl p-6">
+    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between text-white hover:text-emerald-400 transition-colors"
+        className="w-full flex items-center justify-between text-white hover:text-emerald-600 transition-colors"
       >
         <h3 className="text-lg font-semibold">Актуарлық есептеулерді көрсету</h3>
         {isOpen ? (
@@ -61,12 +61,12 @@ export default function ActuarialTable({ data }: ActuarialTableProps) {
               {rows.map((row, i) => (
                 <tr
                   key={i}
-                  className={`border-b border-slate-700/50 ${
-                    i % 2 === 0 ? 'bg-slate-800/30' : 'bg-transparent'
+                  className={`border-b border-slate-200 ${
+                    i % 2 === 0 ? 'bg-slate-100/60' : 'bg-transparent'
                   }`}
                 >
-                  <td className="text-slate-300 py-3 px-4">{row.label}</td>
-                  <td className="text-white text-right py-3 px-4 font-mono">
+                  <td className="text-slate-700 py-3 px-4">{row.label}</td>
+                  <td className="text-slate-900 text-right py-3 px-4 font-mono">
                     {typeof row.value === 'number'
                       ? row.value.toLocaleString('ru-RU', {
                           maximumFractionDigits: 6,

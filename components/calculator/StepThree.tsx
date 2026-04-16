@@ -57,7 +57,7 @@ function RadioCardGroup({ name, options, icon, title }: RadioCardGroupProps) {
             className={`py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all cursor-pointer ${
               current === opt.value
                 ? 'border-emerald-500 bg-emerald-500/10 text-emerald-300'
-                : 'border-gray-700 bg-[#1E293B] text-gray-400 hover:border-gray-600'
+                : 'border-slate-200 bg-white text-slate-600 hover:border-emerald-400'
             }`}
           >
             {opt.label}
@@ -97,28 +97,28 @@ export default function StepThree() {
       <RadioCardGroup
         name="smoking"
         options={SMOKING_OPTIONS}
-        icon={<Cigarette className="w-4 h-4 text-emerald-400" />}
+        icon={<Cigarette className="w-4 h-4 text-emerald-600" />}
         title="Темекі шегу"
       />
 
       <RadioCardGroup
         name="alcohol"
         options={ALCOHOL_OPTIONS}
-        icon={<Wine className="w-4 h-4 text-emerald-400" />}
+        icon={<Wine className="w-4 h-4 text-emerald-600" />}
         title="Алкоголь"
       />
 
       <RadioCardGroup
         name="activity"
         options={ACTIVITY_OPTIONS}
-        icon={<Dumbbell className="w-4 h-4 text-emerald-400" />}
+        icon={<Dumbbell className="w-4 h-4 text-emerald-600" />}
         title="Физикалық белсенділік"
       />
 
       {/* Heredity */}
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
-          <Dna className="w-4 h-4 text-emerald-400" />
+          <Dna className="w-4 h-4 text-emerald-600" />
           Тұқым қуалау
         </label>
         <div className="space-y-3">
@@ -134,7 +134,7 @@ export default function StepThree() {
                 className={`w-full flex items-center gap-3 p-4 rounded-xl border-2 text-left transition-all cursor-pointer ${
                   selected
                     ? 'border-emerald-500 bg-emerald-500/10'
-                    : 'border-gray-700 bg-[#1E293B] hover:border-gray-600'
+                    : 'border-slate-200 bg-white hover:border-emerald-400 hover:shadow-md'
                 }`}
               >
                 <div

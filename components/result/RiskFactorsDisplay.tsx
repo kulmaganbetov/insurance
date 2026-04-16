@@ -19,7 +19,7 @@ function getBarColor(adjustment: number): string {
 
 function getTextColor(adjustment: number): string {
   const abs = Math.abs(adjustment);
-  if (abs <= 5) return 'text-emerald-400';
+  if (abs <= 5) return 'text-emerald-600';
   if (abs <= 15) return 'text-yellow-400';
   if (abs <= 25) return 'text-orange-400';
   return 'text-red-400';
@@ -35,8 +35,8 @@ export default function RiskFactorsDisplay({
   );
 
   return (
-    <div className="bg-[#1E293B] rounded-2xl p-6">
-      <h3 className="text-white text-lg font-semibold mb-4">
+    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <h3 className="text-slate-900 text-lg font-semibold mb-4">
         Тәуекел факторлары
       </h3>
 
@@ -46,7 +46,7 @@ export default function RiskFactorsDisplay({
           return (
             <div key={i}>
               <div className="flex items-center justify-between mb-1">
-                <span className="text-slate-300 text-sm">{factor.factor}</span>
+                <span className="text-slate-700 text-sm">{factor.factor}</span>
                 <span
                   className={`text-sm font-medium ${getTextColor(factor.adjustment)}`}
                 >

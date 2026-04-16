@@ -62,14 +62,14 @@ export default function RiskGauge({ risk_score, risk_level }: RiskGaugeProps) {
   ];
 
   return (
-    <div className="bg-[#1E293B] rounded-2xl p-6 flex flex-col items-center">
-      <h3 className="text-white text-lg font-semibold mb-4">Тәуекелді бағалау</h3>
+    <div className="bg-white rounded-2xl p-6 flex flex-col items-center">
+      <h3 className="text-slate-900 text-lg font-semibold mb-4">Тәуекелді бағалау</h3>
       <svg viewBox="0 0 300 170" className="w-full max-w-[300px]">
         {/* Background arc */}
         <path
           d={createArc(-180, 0)}
           fill="none"
-          stroke="#334155"
+          stroke="#E2E8F0"
           strokeWidth="20"
           strokeLinecap="round"
         />
@@ -91,18 +91,18 @@ export default function RiskGauge({ risk_score, risk_level }: RiskGaugeProps) {
           y1={cy}
           x2={needleX}
           y2={needleY}
-          stroke="white"
+          stroke="#0F172A"
           strokeWidth="3"
           strokeLinecap="round"
         />
         {/* Center dot */}
-        <circle cx={cx} cy={cy} r="6" fill="white" />
+        <circle cx={cx} cy={cy} r="6" fill="#0F172A" />
         {/* Score text */}
         <text
           x={cx}
           y={cy - 25}
           textAnchor="middle"
-          fill="white"
+          fill="#0F172A"
           fontSize="36"
           fontWeight="bold"
         >
@@ -113,12 +113,12 @@ export default function RiskGauge({ risk_score, risk_level }: RiskGaugeProps) {
         <span
           className={`text-sm font-medium px-3 py-1 rounded-full ${
             risk_score <= 25
-              ? 'bg-emerald-500/20 text-emerald-400'
+              ? 'bg-emerald-500/20 text-emerald-600'
               : risk_score <= 50
-              ? 'bg-yellow-500/20 text-yellow-400'
+              ? 'bg-yellow-500/20 text-yellow-600'
               : risk_score <= 75
-              ? 'bg-orange-500/20 text-orange-400'
-              : 'bg-red-500/20 text-red-400'
+              ? 'bg-orange-500/20 text-orange-600'
+              : 'bg-red-500/20 text-red-600'
           }`}
         >
           {risk_level}

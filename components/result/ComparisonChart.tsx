@@ -32,16 +32,16 @@ export default function ComparisonChart({
   ];
 
   return (
-    <div className="bg-[#1E293B] rounded-2xl p-6">
+    <div className="bg-white rounded-2xl p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-white text-lg font-semibold">
+        <h3 className="text-slate-900 text-lg font-semibold">
           Есептеулерді салыстыру
         </h3>
         <span
           className={`text-sm font-medium px-3 py-1 rounded-full ${
             Number(diff) <= 0
-              ? 'bg-emerald-500/20 text-emerald-400'
-              : 'bg-red-500/20 text-red-400'
+              ? 'bg-emerald-500/20 text-emerald-600'
+              : 'bg-red-500/20 text-red-600'
           }`}
         >
           {Number(diff) > 0 ? '+' : ''}
@@ -52,16 +52,16 @@ export default function ComparisonChart({
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} barGap={20}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
             <XAxis
               dataKey="name"
-              tick={{ fill: '#94A3B8', fontSize: 12 }}
-              axisLine={{ stroke: '#475569' }}
+              tick={{ fill: '#64748B', fontSize: 12 }}
+              axisLine={{ stroke: '#CBD5E1' }}
               tickLine={false}
             />
             <YAxis
-              tick={{ fill: '#94A3B8', fontSize: 12 }}
-              axisLine={{ stroke: '#475569' }}
+              tick={{ fill: '#64748B', fontSize: 12 }}
+              axisLine={{ stroke: '#CBD5E1' }}
               tickLine={false}
               tickFormatter={(v: number) =>
                 v >= 1000 ? `${(v / 1000).toFixed(0)}к` : String(v)
@@ -69,15 +69,15 @@ export default function ComparisonChart({
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: '#1E293B',
-                border: '1px solid #334155',
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #E2E8F0',
                 borderRadius: '8px',
-                color: '#F1F5F9',
+                color: '#0F172A',
               }}
               formatter={(value: number) => [
                 `${value.toLocaleString('ru-RU')} ₸`,
               ]}
-              labelStyle={{ color: '#94A3B8' }}
+              labelStyle={{ color: '#64748B' }}
             />
             <Bar
               dataKey="Дәстүрлі актуарлық"
