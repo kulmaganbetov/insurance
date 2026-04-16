@@ -51,6 +51,7 @@ export const metadata: Metadata = {
 const NAV_LINKS = [
   { href: '/', label: 'Басты бет' },
   { href: '/calculator', label: 'Калькулятор' },
+  { href: '/consultant', label: 'AI-кеңесші' },
   { href: '/dashboard', label: 'Талдау' },
   { href: '/about', label: 'Жоба туралы' },
 ] as const;
