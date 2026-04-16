@@ -21,13 +21,13 @@ export default function ActuarialTable({ data }: ActuarialTableProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const rows = [
-    { label: 'lx (живущие на возраст x)', value: data.lx },
-    { label: 'lx+n (живущие на возраст x+n)', value: data.lx_n },
-    { label: 'Dx (дисконтированные живущие)', value: data.Dx },
+    { label: 'lx (x жасқа дейін тірі қалғандар)', value: data.lx },
+    { label: 'lx+n (x+n жасқа дейін тірі қалғандар)', value: data.lx_n },
+    { label: 'Dx (дисконтталған тірі қалғандар)', value: data.Dx },
     { label: 'Dx+n', value: data.Dx_n },
-    { label: 'Nx (коммутационное число)', value: data.Nx },
-    { label: 'Mx (коммутационное число)', value: data.Mx },
-    { label: 'Базовый нетто-тариф', value: data.base_net_tariff },
+    { label: 'Nx (коммутациялық сан)', value: data.Nx },
+    { label: 'Mx (коммутациялық сан)', value: data.Mx },
+    { label: 'Базалық нетто-тариф', value: data.base_net_tariff },
   ];
 
   return (
@@ -36,7 +36,7 @@ export default function ActuarialTable({ data }: ActuarialTableProps) {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between text-white hover:text-emerald-400 transition-colors"
       >
-        <h3 className="text-lg font-semibold">Показать актуарные расчёты</h3>
+        <h3 className="text-lg font-semibold">Актуарлық есептеулерді көрсету</h3>
         {isOpen ? (
           <ChevronUp className="w-5 h-5" />
         ) : (
@@ -53,7 +53,7 @@ export default function ActuarialTable({ data }: ActuarialTableProps) {
                   Параметр
                 </th>
                 <th className="text-right text-slate-400 py-3 px-4 font-medium">
-                  Значение
+                  Мәні
                 </th>
               </tr>
             </thead>

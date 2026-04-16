@@ -5,28 +5,28 @@ import { motion } from 'framer-motion';
 import { Cigarette, Wine, Dumbbell, Dna } from 'lucide-react';
 
 const SMOKING_OPTIONS = [
-  { value: 'none', label: 'Не курю' },
-  { value: 'moderate', label: 'Умеренно' },
-  { value: 'active', label: 'Активно' },
-  { value: 'quit_recent', label: 'Бросил < 5 лет' },
+  { value: 'none', label: 'Шекпеймін' },
+  { value: 'moderate', label: 'Орташа' },
+  { value: 'active', label: 'Белсенді' },
+  { value: 'quit_recent', label: '< 5 жыл бұрын тастадым' },
 ] as const;
 
 const ALCOHOL_OPTIONS = [
-  { value: 'none', label: 'Не употребляю' },
-  { value: 'moderate', label: 'Умеренно' },
-  { value: 'abuse', label: 'Злоупотребляю' },
+  { value: 'none', label: 'Қолданбаймын' },
+  { value: 'moderate', label: 'Орташа' },
+  { value: 'abuse', label: 'Шектен тыс' },
 ] as const;
 
 const ACTIVITY_OPTIONS = [
-  { value: 'low', label: 'Низкая' },
-  { value: 'medium', label: 'Средняя' },
-  { value: 'high', label: 'Высокая' },
+  { value: 'low', label: 'Төмен' },
+  { value: 'medium', label: 'Орташа' },
+  { value: 'high', label: 'Жоғары' },
 ] as const;
 
 const HEREDITY_OPTIONS = [
-  { id: 'parent_cvd', label: 'Родитель умер от ССЗ до 60 лет' },
-  { id: 'parent_oncology', label: 'Родитель умер от онкологии до 60 лет' },
-  { id: 'parent_diabetes', label: 'Диабет у обоих родителей' },
+  { id: 'parent_cvd', label: 'Ата-ана 60 жасқа дейін ЖҚА-дан қайтыс болды' },
+  { id: 'parent_oncology', label: 'Ата-ана 60 жасқа дейін онкологиядан қайтыс болды' },
+  { id: 'parent_diabetes', label: 'Ата-анасының екеуінде де диабет' },
 ] as const;
 
 interface RadioCardGroupProps {
@@ -98,7 +98,7 @@ export default function StepThree() {
         name="smoking"
         options={SMOKING_OPTIONS}
         icon={<Cigarette className="w-4 h-4 text-emerald-400" />}
-        title="Курение"
+        title="Темекі шегу"
       />
 
       <RadioCardGroup
@@ -112,14 +112,14 @@ export default function StepThree() {
         name="activity"
         options={ACTIVITY_OPTIONS}
         icon={<Dumbbell className="w-4 h-4 text-emerald-400" />}
-        title="Физическая активность"
+        title="Физикалық белсенділік"
       />
 
       {/* Heredity */}
       <div>
         <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
           <Dna className="w-4 h-4 text-emerald-400" />
-          Наследственность
+          Тұқым қуалау
         </label>
         <div className="space-y-3">
           {HEREDITY_OPTIONS.map((opt) => {

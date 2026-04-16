@@ -20,19 +20,19 @@ export default function LifeExpectancyBar({
 
   const markers = [
     {
-      label: 'Личный прогноз',
+      label: 'Жеке болжам',
       age: personal_estimate,
       color: '#10B981',
       bgColor: 'bg-emerald-500',
     },
     {
-      label: 'Среднее по полу',
+      label: 'Жыныс бойынша орташа',
       age: gender_average,
       color: '#3B82F6',
       bgColor: 'bg-blue-500',
     },
     {
-      label: 'Среднее по РК',
+      label: 'ҚР бойынша орташа',
       age: country_average,
       color: '#F59E0B',
       bgColor: 'bg-yellow-500',
@@ -48,7 +48,7 @@ export default function LifeExpectancyBar({
   return (
     <div className="bg-[#1E293B] rounded-2xl p-6">
       <h3 className="text-white text-lg font-semibold mb-6">
-        Ожидаемая продолжительность жизни
+        Күтілетін өмір сүру ұзақтығы
       </h3>
 
       <div className="relative mt-8 mb-16 mx-4">
@@ -99,7 +99,7 @@ export default function LifeExpectancyBar({
               style={{ top: '32px' }}
             >
               <p className="text-xs font-medium" style={{ color: marker.color }}>
-                {marker.age} лет
+                {marker.age} жас
               </p>
               <p className="text-slate-500 text-[10px]">{marker.label}</p>
             </div>

@@ -89,7 +89,7 @@ export default function RegionHeatmap() {
         <div className="absolute top-4 right-4 bg-[#0F172A] border border-slate-700 rounded-xl p-4 shadow-xl">
           <p className="text-white font-semibold">{hovered.name}</p>
           <p className="text-slate-400 text-sm">
-            Средний риск:{' '}
+            Орташа тәуекел:{' '}
             <span style={{ color: getRiskColor(hovered.risk) }} className="font-medium">
               {hovered.risk}%
             </span>
@@ -100,10 +100,10 @@ export default function RegionHeatmap() {
       {/* Legend */}
       <div className="flex justify-center gap-6 mt-4 text-xs">
         {[
-          { color: '#10B981', label: 'Низкий (< 30%)' },
-          { color: '#F59E0B', label: 'Средний (30-35%)' },
-          { color: '#F97316', label: 'Повышенный (35-40%)' },
-          { color: '#EF4444', label: 'Высокий (> 40%)' },
+          { color: '#10B981', label: 'Төмен (< 30%)' },
+          { color: '#F59E0B', label: 'Орташа (30-35%)' },
+          { color: '#F97316', label: 'Жоғарылатылған (35-40%)' },
+          { color: '#EF4444', label: 'Жоғары (> 40%)' },
         ].map((item, i) => (
           <div key={i} className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />

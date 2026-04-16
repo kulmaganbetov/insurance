@@ -24,44 +24,44 @@ export const REGIONS = [
 export const INSURANCE_TYPES = [
   {
     value: 'endowment',
-    label: 'На дожитие',
-    description: 'Выплата при дожитии до окончания срока договора',
+    label: 'Өмір сүруге',
+    description: 'Шарт мерзімі аяқталғанға дейін өмір сүрген кезде төлем',
   },
   {
     value: 'term_life',
-    label: 'На случай смерти (срочное)',
-    description: 'Защита близких на определённый срок',
+    label: 'Қайтыс болу жағдайына (мерзімді)',
+    description: 'Белгілі мерзімге жақындарыңызды қорғау',
   },
   {
     value: 'mixed',
-    label: 'Смешанное',
-    description: 'Комбинация накопления и защиты',
+    label: 'Аралас',
+    description: 'Жинақтау мен қорғаудың тіркесімі',
   },
   {
     value: 'whole_life',
-    label: 'Пожизненное',
-    description: 'Пожизненная страховая защита',
+    label: 'Өмір бойы',
+    description: 'Өмір бойы сақтандыру қорғауы',
   },
   {
     value: 'pension_annuity',
-    label: 'Пенсионная рента',
-    description: 'Регулярные выплаты после выхода на пенсию',
+    label: 'Зейнетақы рентасы',
+    description: 'Зейнетке шыққаннан кейін тұрақты төлемдер',
   },
 ] as const;
 
 export const LOADING_MESSAGES = [
-  'Запрашиваем актуарные таблицы...',
-  'Анализируем факторы риска...',
-  'AI рассчитывает тариф...',
-  'Готовим отчёт...',
+  'Актуарлық кестелерді сұрап жатырмыз...',
+  'Тәуекел факторларын талдап жатырмыз...',
+  'AI тарифті есептеп жатыр...',
+  'Есепті дайындап жатырмыз...',
 ] as const;
 
 export const BMI_CATEGORIES = [
-  { max: 16, label: 'Выраженный дефицит', color: 'text-red-400' },
-  { max: 18.5, label: 'Недостаточная масса', color: 'text-yellow-400' },
-  { max: 25, label: 'Норма', color: 'text-emerald-400' },
-  { max: 30, label: 'Избыточный вес', color: 'text-yellow-400' },
-  { max: 35, label: 'Ожирение I степени', color: 'text-orange-400' },
-  { max: 40, label: 'Ожирение II степени', color: 'text-red-400' },
-  { max: Infinity, label: 'Ожирение III степени', color: 'text-red-500' },
+  { max: 16, label: 'Айқын тапшылық', color: 'text-red-400' },
+  { max: 18.5, label: 'Жеткіліксіз салмақ', color: 'text-yellow-400' },
+  { max: 25, label: 'Қалыпты', color: 'text-emerald-400' },
+  { max: 30, label: 'Артық салмақ', color: 'text-yellow-400' },
+  { max: 35, label: 'I дәрежелі семіздік', color: 'text-orange-400' },
+  { max: 40, label: 'II дәрежелі семіздік', color: 'text-red-400' },
+  { max: Infinity, label: 'III дәрежелі семіздік', color: 'text-red-500' },
 ] as const;

@@ -3,27 +3,27 @@ import Link from 'next/link';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'LifeGuard KZ — AI-платформа оценки рисков страхования жизни',
+  title: 'LifeGuard KZ — Өмірді сақтандыру тәуекелдерін AI бағалау платформасы',
   description:
-    'Интеллектуальная платформа для оценки рисков страхования жизни в Казахстане. ' +
-    'Расчёт премий, анализ факторов риска и персональные рекомендации на основе ИИ.',
+    'Қазақстандағы өмірді сақтандыру тәуекелдерін бағалауға арналған зияткерлік платформа. ' +
+    'AI негізінде сыйлықақыларды есептеу, тәуекел факторларын талдау және жеке ұсыныстар.',
   keywords: [
-    'страхование жизни',
-    'Казахстан',
-    'оценка рисков',
-    'калькулятор страхования',
+    'өмірді сақтандыру',
+    'Қазақстан',
+    'тәуекелдерді бағалау',
+    'сақтандыру калькуляторы',
     'AI',
-    'искусственный интеллект',
+    'жасанды интеллект',
     'LifeGuard',
   ],
   authors: [{ name: 'LifeGuard KZ' }],
   openGraph: {
-    title: 'LifeGuard KZ — AI-платформа оценки рисков страхования жизни',
+    title: 'LifeGuard KZ — Өмірді сақтандыру тәуекелдерін AI бағалау платформасы',
     description:
-      'Интеллектуальная платформа для оценки рисков страхования жизни в Казахстане. ' +
-      'Расчёт премий, анализ факторов риска и персональные рекомендации на основе ИИ.',
+      'Қазақстандағы өмірді сақтандыру тәуекелдерін бағалауға арналған зияткерлік платформа. ' +
+      'AI негізінде сыйлықақыларды есептеу, тәуекел факторларын талдау және жеке ұсыныстар.',
     type: 'website',
-    locale: 'ru_KZ',
+    locale: 'kk_KZ',
     siteName: 'LifeGuard KZ',
     url: 'https://lifeguard.kz',
     images: [
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'LifeGuard KZ — AI-платформа оценки рисков',
+        alt: 'LifeGuard KZ — Өмірді сақтандыру тәуекелдерін AI бағалау платформасы',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LifeGuard KZ — AI-платформа оценки рисков страхования жизни',
+    title: 'LifeGuard KZ — Өмірді сақтандыру тәуекелдерін AI бағалау платформасы',
     description:
-      'Интеллектуальная платформа для оценки рисков страхования жизни в Казахстане.',
+      'Қазақстандағы өмірді сақтандыру тәуекелдерін бағалауға арналған зияткерлік платформа.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -49,10 +49,10 @@ export const metadata: Metadata = {
 };
 
 const NAV_LINKS = [
-  { href: '/', label: 'Главная' },
+  { href: '/', label: 'Басты бет' },
   { href: '/calculator', label: 'Калькулятор' },
-  { href: '/dashboard', label: 'Дашборд' },
-  { href: '/about', label: 'О проекте' },
+  { href: '/dashboard', label: 'Талдау' },
+  { href: '/about', label: 'Жоба туралы' },
 ] as const;
 
 export default function RootLayout({
@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru">
+    <html lang="kk">
       <body className="min-h-screen bg-[#0F172A] font-sans text-gray-100 flex flex-col">
         {/* ── Navigation ───────────────────────────────────────────── */}
         <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0F172A]/80 backdrop-blur-xl">
@@ -108,7 +108,7 @@ export default function RootLayout({
             <button
               className="inline-flex md:hidden items-center justify-center rounded-lg p-2
                          text-gray-400 hover:bg-white/5 hover:text-white transition-colors"
-              aria-label="Меню"
+              aria-label="Мәзір"
               type="button"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -148,13 +148,13 @@ export default function RootLayout({
                   </span>
                 </div>
                 <p className="text-sm text-gray-500 leading-relaxed">
-                  AI-платформа оценки рисков страхования жизни в Казахстане.
+                  Қазақстандағы өмірді сақтандыру тәуекелдерін AI бағалау платформасы.
                 </p>
               </div>
 
               {/* Navigation */}
               <div>
-                <h4 className="text-sm font-semibold text-gray-300 mb-3">Навигация</h4>
+                <h4 className="text-sm font-semibold text-gray-300 mb-3">Бөлімдер</h4>
                 <ul className="space-y-2">
                   {NAV_LINKS.map((link) => (
                     <li key={link.href}>
@@ -171,21 +171,17 @@ export default function RootLayout({
 
               {/* Disclaimer */}
               <div>
-                <h4 className="text-sm font-semibold text-gray-300 mb-3">Отказ от ответственности</h4>
+                <h4 className="text-sm font-semibold text-gray-300 mb-3">Жауапкершіліктен бас тарту</h4>
                 <p className="text-xs text-gray-500 leading-relaxed">
-                  Результаты расчётов носят исключительно информационный характер
-                  и не являются офертой или рекомендацией к заключению договора
-                  страхования. Для получения точных условий обратитесь в
-                  лицензированную страховую компанию Республики Казахстан.
-                  Платформа использует модели ИИ, которые могут содержать неточности.
+                  Есептеу нәтижелері тек ақпараттық сипатта және сақтандыру шартын жасасуға оферта немесе ұсыныс болып табылмайды. Нақты шарттарды алу үшін Қазақстан Республикасының лицензияланған сақтандыру компаниясына хабарласыңыз. Платформа AI модельдерін пайдаланады, олар дәлсіздіктерді қамтуы мүмкін.
                 </p>
               </div>
             </div>
 
             <div className="mt-8 border-t border-white/5 pt-6 text-center">
               <p className="text-xs text-gray-600">
-                &copy; {new Date().getFullYear()} LifeGuard KZ. Все права защищены.
-                Не является финансовой консультацией.
+                &copy; {new Date().getFullYear()} LifeGuard KZ. Барлық құқықтар қорғалған.
+                Қаржылық кеңес болып табылмайды.
               </p>
             </div>
           </div>

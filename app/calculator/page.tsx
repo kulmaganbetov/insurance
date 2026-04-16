@@ -16,30 +16,30 @@ import { LOADING_MESSAGES } from '@/lib/constants';
 const schema = z.object({
   name: z.string().optional(),
   age: z.number().min(18).max(75),
-  gender: z.string().min(1, 'Выберите пол'),
-  region: z.string().min(1, 'Выберите регион'),
+  gender: z.string().min(1, 'Жынысты таңдаңыз'),
+  region: z.string().min(1, 'Аймақты таңдаңыз'),
   height: z.number().min(100, 'Мин. 100 см').max(250, 'Макс. 250 см'),
   weight: z.number().min(30, 'Мин. 30 кг').max(300, 'Макс. 300 кг'),
   diseases: z.array(z.string()).default([]),
   systolic: z.number().min(60).max(250).optional().or(z.nan()),
   diastolic: z.number().min(40).max(160).optional().or(z.nan()),
-  smoking: z.string().min(1, 'Выберите вариант'),
-  alcohol: z.string().min(1, 'Выберите вариант'),
-  activity: z.string().min(1, 'Выберите вариант'),
+  smoking: z.string().min(1, 'Нұсқаны таңдаңыз'),
+  alcohol: z.string().min(1, 'Нұсқаны таңдаңыз'),
+  activity: z.string().min(1, 'Нұсқаны таңдаңыз'),
   heredity: z.array(z.string()).default([]),
-  insuranceType: z.string().min(1, 'Выберите тип страхования'),
+  insuranceType: z.string().min(1, 'Сақтандыру түрін таңдаңыз'),
   term: z.number().min(5).max(40),
   insuranceSum: z.number().min(1000000).max(50000000),
-  goal: z.string().min(1, 'Выберите цель'),
+  goal: z.string().min(1, 'Мақсатты таңдаңыз'),
 });
 
 type FormValues = z.infer<typeof schema>;
 
 const STEPS = [
-  { title: 'Личные данные', fields: ['age', 'gender', 'region', 'height', 'weight'] },
-  { title: 'Здоровье', fields: ['diseases', 'systolic', 'diastolic'] },
-  { title: 'Образ жизни', fields: ['smoking', 'alcohol', 'activity', 'heredity'] },
-  { title: 'Страхование', fields: ['insuranceType', 'term', 'insuranceSum', 'goal'] },
+  { title: 'Жеке деректер', fields: ['age', 'gender', 'region', 'height', 'weight'] },
+  { title: 'Денсаулық', fields: ['diseases', 'systolic', 'diastolic'] },
+  { title: 'Өмір салты', fields: ['smoking', 'alcohol', 'activity', 'heredity'] },
+  { title: 'Сақтандыру', fields: ['insuranceType', 'term', 'insuranceSum', 'goal'] },
 ];
 
 export default function CalculatorPage() {
@@ -104,15 +104,15 @@ export default function CalculatorPage() {
       ...data,
       bmi: bmiVal ? Number(bmiVal.toFixed(1)) : null,
       bmiCategory: bmiVal
-        ? bmiVal < 18.5 ? 'Недостаточная масса'
-          : bmiVal < 25 ? 'Норма'
-          : bmiVal < 30 ? 'Избыточный вес'
-          : bmiVal < 35 ? 'Ожирение I степени'
-          : 'Ожирение II+ степени'
+        ? bmiVal < 18.5 ? 'Жеткіліксіз салмақ'
+          : bmiVal < 25 ? 'Қалыпты'
+          : bmiVal < 30 ? 'Артық салмақ'
+          : bmiVal < 35 ? 'I дәрежелі семіздік'
+          : 'II+ дәрежелі семіздік'
         : null,
       bloodPressure: data.systolic && data.diastolic
         ? `${data.systolic}/${data.diastolic}`
-        : 'Не указано',
+        : 'Көрсетілмеген',
     };
 
     try {
@@ -122,7 +122,7 @@ export default function CalculatorPage() {
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error('Ошибка расчёта');
+      if (!res.ok) throw new Error('Есептеу қатесі');
 
       const result = await res.json();
 
@@ -134,7 +134,7 @@ export default function CalculatorPage() {
 
       const displayData = {
         risk_score: result.risk_calculation?.risk_score ?? 50,
-        risk_level: result.risk_calculation?.risk_level ?? 'Средний',
+        risk_level: result.risk_calculation?.risk_level ?? 'Орташа',
         annual_premium: annualPremium,
         monthly_premium: result.premium?.monthly_premium_tenge ?? Math.round(annualPremium / 12),
         one_time_premium: result.premium?.one_time_premium_tenge ?? Math.round(annualPremium * 10),
@@ -146,9 +146,9 @@ export default function CalculatorPage() {
           country_average: result.life_expectancy_estimate?.base_kazakhstan ?? 75.44,
         },
         recommendations: result.recommendations ?? [
-          'Рекомендуется ежегодное медицинское обследование',
-          'Поддерживайте здоровый образ жизни для снижения рисков',
-          'Рассмотрите страхование от критических заболеваний',
+          'Жыл сайын медициналық тексеруден өту ұсынылады',
+          'Тәуекелдерді азайту үшін салауатты өмір салтын ұстаныңыз',
+          'Сыни аурулардан сақтандыруды қарастырыңыз',
         ],
         risk_factors: (result.risk_factors ?? []).map((f: { factor: string; adjustment: string | number }) => {
           let adj: number;
@@ -176,7 +176,7 @@ export default function CalculatorPage() {
       router.push('/result');
     } catch (error) {
       console.error('Calculation error:', error);
-      alert('Произошла ошибка при расчёте. Пожалуйста, попробуйте снова.');
+      alert('Есептеу кезінде қате пайда болды. Қайта көріңіз.');
     } finally {
       setIsLoading(false);
     }
@@ -188,9 +188,9 @@ export default function CalculatorPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
-            Калькулятор страхования
+            Сақтандыру калькуляторы
           </h1>
-          <p className="text-slate-400">Заполните анкету для персонального расчёта</p>
+          <p className="text-slate-400">Жеке есептеу үшін сауалнаманы толтырыңыз</p>
         </div>
 
         {/* Progress bar */}
@@ -221,7 +221,7 @@ export default function CalculatorPage() {
           </div>
           <div className="text-center">
             <span className="text-sm text-slate-400">
-              Шаг {step + 1} из {STEPS.length}: {STEPS[step].title}
+              {STEPS.length}-ден {step + 1}-қадам: {STEPS[step].title}
             </span>
           </div>
         </div>
@@ -247,7 +247,7 @@ export default function CalculatorPage() {
                 className="flex items-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 disabled:opacity-30 disabled:hover:bg-slate-700 text-white rounded-xl transition-all text-sm font-medium"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Назад
+                Артқа
               </button>
 
               {step < STEPS.length - 1 ? (
@@ -256,7 +256,7 @@ export default function CalculatorPage() {
                   onClick={nextStep}
                   className="flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl transition-all text-sm font-medium"
                 >
-                  Далее
+                  Келесі
                   <ArrowRight className="w-4 h-4" />
                 </button>
               ) : (
@@ -268,11 +268,11 @@ export default function CalculatorPage() {
                   {isLoading ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      Рассчитываем...
+                      Есептеп жатырмыз...
                     </>
                   ) : (
                     <>
-                      Рассчитать
+                      Есептеу
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
@@ -307,7 +307,7 @@ export default function CalculatorPage() {
                     {LOADING_MESSAGES[loadingMsgIndex]}
                   </motion.p>
                 </AnimatePresence>
-                <p className="text-slate-500 text-sm mt-2">Обычно это занимает 5–10 секунд</p>
+                <p className="text-slate-500 text-sm mt-2">Әдетте 5–10 секунд алады</p>
               </div>
             </motion.div>
           )}

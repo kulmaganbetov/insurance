@@ -18,52 +18,52 @@ const MORTALITY_TABLE = [
 ];
 
 const RISK_COEFFICIENTS = [
-  { category: 'Здоровье', factors: [
-    { name: 'Гипертония (АД > 140/90)', value: '+12%' },
-    { name: 'Ожирение (ИМТ > 30)', value: '+10%' },
-    { name: 'Ожирение тяжёлое (ИМТ > 35)', value: '+18%' },
-    { name: 'Сахарный диабет 2 типа', value: '+15%' },
-    { name: 'Сердечно-сосудистые заболевания', value: '+25%' },
-    { name: 'Перенесённый инфаркт/инсульт', value: '+35%' },
-    { name: 'Онкология (ремиссия < 5 лет)', value: '+40%' },
-    { name: 'Онкология (ремиссия > 5 лет)', value: '+15%' },
-    { name: 'Хронические болезни лёгких (ХОБЛ)', value: '+20%' },
-    { name: 'Хроническая почечная недостаточность', value: '+22%' },
+  { category: 'Денсаулық', factors: [
+    { name: 'Гипертония (АҚ > 140/90)', value: '+12%' },
+    { name: 'Семіздік (ДСИ > 30)', value: '+10%' },
+    { name: 'Ауыр семіздік (ДСИ > 35)', value: '+18%' },
+    { name: '2-ші тип қант диабеті', value: '+15%' },
+    { name: 'Жүрек-қан тамыр аурулары', value: '+25%' },
+    { name: 'Инфаркт/инсульт өткізген', value: '+35%' },
+    { name: 'Онкология (ремиссия < 5 жыл)', value: '+40%' },
+    { name: 'Онкология (ремиссия > 5 жыл)', value: '+15%' },
+    { name: 'Өкпенің созылмалы аурулары (ӨСОА)', value: '+20%' },
+    { name: 'Созылмалы бүйрек жеткіліксіздігі', value: '+22%' },
   ]},
-  { category: 'Образ жизни', factors: [
-    { name: 'Курение активное (> 10 сигарет/день)', value: '+15%' },
-    { name: 'Курение умеренное (< 10 сигарет/день)', value: '+8%' },
-    { name: 'Бросил курить (< 5 лет назад)', value: '+5%' },
-    { name: 'Злоупотребление алкоголем', value: '+12%' },
-    { name: 'Низкая физическая активность', value: '+5%' },
-    { name: 'Высокая физическая активность', value: '-5%' },
+  { category: 'Өмір салты', factors: [
+    { name: 'Белсенді темекі шегу (> 10 сигарет/күн)', value: '+15%' },
+    { name: 'Орташа темекі шегу (< 10 сигарет/күн)', value: '+8%' },
+    { name: 'Темекіден бас тартты (< 5 жыл бұрын)', value: '+5%' },
+    { name: 'Алкогольді асыра пайдалану', value: '+12%' },
+    { name: 'Төмен физикалық белсенділік', value: '+5%' },
+    { name: 'Жоғары физикалық белсенділік', value: '-5%' },
   ]},
-  { category: 'Наследственность', factors: [
-    { name: 'Смерть родителя от ССЗ до 60 лет', value: '+8%' },
-    { name: 'Смерть родителя от онкологии до 60 лет', value: '+6%' },
-    { name: 'Диабет у обоих родителей', value: '+7%' },
+  { category: 'Тұқым қуалаушылық', factors: [
+    { name: 'Ата-ана ЖҚТ ауруынан 60 жасқа дейін қайтыс болған', value: '+8%' },
+    { name: 'Ата-ана онкологиядан 60 жасқа дейін қайтыс болған', value: '+6%' },
+    { name: 'Екі ата-анада да диабет', value: '+7%' },
   ]},
-  { category: 'Регион', factors: [
-    { name: 'Алматы (центр), Астана', value: 'Базовый' },
+  { category: 'Аймақ', factors: [
+    { name: 'Алматы (орталық), Астана', value: 'Базалық' },
     { name: 'Алматы (Алатау, Наурызбай)', value: '+3%' },
     { name: 'Шымкент', value: '-1%' },
-    { name: 'Северные области (ВКО, СКО, Павлодар)', value: '+4%' },
-    { name: 'Сельская местность', value: '+3%' },
-    { name: 'Ұлытау, отдалённые регионы', value: '+6%' },
+    { name: 'Солтүстік облыстар (ШҚО, СҚО, Павлодар)', value: '+4%' },
+    { name: 'Ауылдық аймақ', value: '+3%' },
+    { name: 'Ұлытау, алыс аймақтар', value: '+6%' },
   ]},
-  { category: 'Пол', factors: [
-    { name: 'Мужчина (ОПЖ 71.33 года)', value: 'Базовый' },
-    { name: 'Женщина (ОПЖ 79.42 года)', value: '-8%' },
+  { category: 'Жынысы', factors: [
+    { name: 'Ер (КӨҰ 71.33 жыл)', value: 'Базалық' },
+    { name: 'Әйел (КӨҰ 79.42 жыл)', value: '-8%' },
   ]},
 ];
 
 const SOURCES = [
-  'Бюро национальной статистики Республики Казахстан — Таблицы смертности населения',
-  'Закон РК «О страховой деятельности» — Нормативы актуарных расчётов',
-  'Актуарная математика — Н.Л. Бауэрс и др., 2001',
+  'Қазақстан Республикасының Ұлттық статистика бюросы — Халықтың өлім-жітім кестелері',
+  'ҚР «Сақтандыру қызметі туралы» заңы — Актуарлық есептеулер нормативтері',
+  'Актуарлық математика — Н.Л. Бауэрс т.б., 2001',
   'World Health Organization — Life Tables for Kazakhstan',
-  'Национальный банк РК — Нормативные акты по страхованию жизни',
-  'OpenAI GPT-4o mini — Модель для анализа и корректировки рисков',
+  'ҚР Ұлттық банкі — Өмірді сақтандыру бойынша нормативтік актілер',
+  'OpenAI GPT-4o mini — Тәуекелдерді талдау және түзету моделі',
 ];
 
 export default function AboutPage() {
@@ -78,10 +78,10 @@ export default function AboutPage() {
           {/* Header */}
           <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="text-center mb-16">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              О методологии <span className="gradient-text">LifeGuard KZ</span>
+              <span className="gradient-text">LifeGuard KZ</span> әдіснамасы туралы
             </h1>
             <p className="text-slate-400 max-w-2xl mx-auto">
-              Научная основа платформы оценки рисков страхования жизни
+              Өмірді сақтандыру тәуекелдерін бағалау платформасының ғылыми негізі
             </p>
           </motion.div>
 
@@ -91,22 +91,23 @@ export default function AboutPage() {
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
                 <BookOpen className="w-5 h-5 text-emerald-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Научная база</h2>
+              <h2 className="text-2xl font-bold text-white">Ғылыми база</h2>
             </div>
             <div className="glass-card p-6 space-y-6">
               <p className="text-slate-300 leading-relaxed">
-                Платформа использует классические актуарные формулы для расчёта страховых премий.
-                Все расчёты основаны на коммутационных числах и таблицах смертности.
+                Платформа сақтандыру сыйлықақыларын есептеуге арналған классикалық актуарлық
+                формулаларды пайдаланады. Барлық есептеулер коммутациялық сандар мен өлім-жітім
+                кестелеріне негізделген.
               </p>
 
               {/* Formulas */}
               <div className="space-y-4">
-                <h3 className="text-white font-semibold">Ключевые формулы</h3>
+                <h3 className="text-white font-semibold">Негізгі формулалар</h3>
                 {[
-                  { name: 'Коммутационные числа', formula: 'Dₓ = lₓ · v^x,  где v = 1/(1+i),  i = 5%' },
-                  { name: 'Страхование на дожитие', formula: 'ₙEₓ = D(x+n) / Dₓ' },
-                  { name: 'Срочное страхование', formula: 'ₙAₓ = (Mₓ - M(x+n)) / (Dₓ · v)' },
-                  { name: 'Срочная рента', formula: 'ₙ|ä\'ₓ = (Nₓ - N(x+n)) / Dₓ' },
+                  { name: 'Коммутациялық сандар', formula: 'Dₓ = lₓ · v^x,  мұнда v = 1/(1+i),  i = 5%' },
+                  { name: 'Өмір сүруге сақтандыру', formula: 'ₙEₓ = D(x+n) / Dₓ' },
+                  { name: 'Мерзімді сақтандыру', formula: 'ₙAₓ = (Mₓ - M(x+n)) / (Dₓ · v)' },
+                  { name: 'Мерзімді рента', formula: 'ₙ|ä\'ₓ = (Nₓ - N(x+n)) / Dₓ' },
                   { name: 'Брутто-тариф', formula: 'Тб = (nE + α + (γ + δ) · ä) / (1 - β)' },
                 ].map((f, i) => (
                   <div key={i} className="bg-[#0F172A] rounded-xl p-4 border border-slate-700/50">
@@ -117,9 +118,9 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-[#0F172A] rounded-xl p-4 border border-slate-700/50">
-                <p className="text-slate-400 text-xs mb-1">Параметры брутто-тарифа</p>
+                <p className="text-slate-400 text-xs mb-1">Брутто-тариф параметрлері</p>
                 <p className="text-slate-300 text-sm font-mono">
-                  α = 0.05 (единовременные расходы) · β = 0.04 (сбор взносов) · γ = 0.02 (управление) · δ = 0.03 (прибыль)
+                  α = 0.05 (біржолғы шығындар) · β = 0.04 (жарна жинау) · γ = 0.02 (басқару) · δ = 0.03 (пайда)
                 </p>
               </div>
             </div>
@@ -131,19 +132,19 @@ export default function AboutPage() {
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
                 <Database className="w-5 h-5 text-blue-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Данные</h2>
+              <h2 className="text-2xl font-bold text-white">Деректер</h2>
             </div>
             <div className="glass-card p-6">
               <p className="text-slate-300 leading-relaxed mb-6">
-                Используется таблица смертности населения Республики Казахстан
-                (Бюро национальной статистики РК). Значение lₓ — число доживших
-                до возраста x из 100 000 родившихся.
+                Қазақстан Республикасы халқының өлім-жітім кестесі пайдаланылады
+                (ҚР Ұлтстатистика бюросы). lₓ мәні — 100 000 туылғандардан
+                x жасқа дейін тірі қалғандардың саны.
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-slate-700">
-                      <th className="text-left text-slate-400 py-2 px-3 font-medium">Возраст (x)</th>
+                      <th className="text-left text-slate-400 py-2 px-3 font-medium">Жас (x)</th>
                       <th className="text-right text-slate-400 py-2 px-3 font-medium">lₓ</th>
                       <th className="text-right text-slate-400 py-2 px-3 font-medium">dₓ</th>
                     </tr>
@@ -176,17 +177,17 @@ export default function AboutPage() {
             </div>
             <div className="glass-card p-6 space-y-4">
               <p className="text-slate-300 leading-relaxed">
-                Платформа интегрирована с моделью <span className="text-emerald-400 font-semibold">GPT-4o mini</span> от OpenAI.
-                Нейросеть выполняет роль актуария, который:
+                Платформа OpenAI-дің <span className="text-emerald-400 font-semibold">GPT-4o mini</span> моделімен
+                интеграцияланған. Нейрожелі мынадай актуарий рөлін атқарады:
               </p>
               <ul className="space-y-3 text-slate-300">
                 {[
-                  'Интерполирует значения таблицы смертности для промежуточных возрастов',
-                  'Рассчитывает коммутационные числа Dₓ, Nₓ, Mₓ',
-                  'Применяет нужную формулу тарифа в зависимости от типа страхования',
-                  'Определяет поправочные коэффициенты на основе индивидуальных факторов',
-                  'Генерирует персональные рекомендации',
-                  'Оценивает ожидаемую продолжительность жизни с учётом факторов',
+                  'Аралық жастар үшін өлім-жітім кестесінің мәндерін интерполяциялайды',
+                  'Dₓ, Nₓ, Mₓ коммутациялық сандарын есептейді',
+                  'Сақтандыру түріне байланысты тариф формуласын қолданады',
+                  'Жеке факторлар негізінде түзету коэффициенттерін анықтайды',
+                  'Жеке ұсыныстарды жасайды',
+                  'Факторларды ескере отырып, күтілетін өмір сүру ұзақтығын бағалайды',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <span className="text-emerald-400 mt-1">•</span>
@@ -195,9 +196,9 @@ export default function AboutPage() {
                 ))}
               </ul>
               <div className="bg-[#0F172A] rounded-xl p-4 border border-slate-700/50">
-                <p className="text-slate-400 text-xs mb-1">Параметры модели</p>
+                <p className="text-slate-400 text-xs mb-1">Модель параметрлері</p>
                 <p className="text-slate-300 text-sm">
-                  Model: gpt-4o · Temperature: 0.1 · Response format: JSON · Промпт: ~2500 токенов
+                  Model: gpt-4o · Temperature: 0.1 · Response format: JSON · Промпт: ~2500 токен
                 </p>
               </div>
             </div>
@@ -209,7 +210,7 @@ export default function AboutPage() {
               <div className="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center">
                 <Calculator className="w-5 h-5 text-yellow-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Поправочные коэффициенты</h2>
+              <h2 className="text-2xl font-bold text-white">Түзету коэффициенттері</h2>
             </div>
             <div className="space-y-6">
               {RISK_COEFFICIENTS.map((group, gi) => (
@@ -220,7 +221,7 @@ export default function AboutPage() {
                       <thead>
                         <tr className="border-b border-slate-700">
                           <th className="text-left text-slate-400 py-2 px-3 font-medium">Фактор</th>
-                          <th className="text-right text-slate-400 py-2 px-3 font-medium">Поправка</th>
+                          <th className="text-right text-slate-400 py-2 px-3 font-medium">Түзету</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -250,7 +251,7 @@ export default function AboutPage() {
               <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center">
                 <FileText className="w-5 h-5 text-cyan-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Источники</h2>
+              <h2 className="text-2xl font-bold text-white">Деректер көздері</h2>
             </div>
             <div className="glass-card p-6">
               <ol className="space-y-3">
@@ -269,17 +270,17 @@ export default function AboutPage() {
           {/* Algorithm steps */}
           <motion.section variants={fadeInUp} transition={{ duration: 0.5 }}>
             <div className="glass-card p-6">
-              <h3 className="text-white font-semibold mb-4">Алгоритм расчёта (8 шагов)</h3>
+              <h3 className="text-white font-semibold mb-4">Есептеу алгоритмі (8 қадам)</h3>
               <div className="space-y-3">
                 {[
-                  'Получить данные клиента (возраст, пол, регион, здоровье, образ жизни)',
-                  'Вычислить lₓ и l(x+n) из таблицы смертности (линейная интерполяция)',
-                  'Рассчитать коммутационные числа: Dₓ, D(x+n), Nₓ, N(x+n), Mₓ',
-                  'Применить формулу нетто-тарифа для выбранного типа страхования',
-                  'Определить суммарный коэффициент K = 1 + Σ поправок',
-                  'Скорректировать тариф и вычислить брутто-тариф',
-                  'Рассчитать годовую, ежемесячную и единовременную премию',
-                  'Определить уровень риска: K < 1.10 → Низкий, 1.10–1.25 → Средний, 1.25–1.45 → Высокий, ≥ 1.45 → Очень высокий',
+                  'Клиент деректерін алу (жасы, жынысы, аймағы, денсаулығы, өмір салты)',
+                  'Өлім-жітім кестесінен lₓ және l(x+n) есептеу (сызықтық интерполяция)',
+                  'Коммутациялық сандарды есептеу: Dₓ, D(x+n), Nₓ, N(x+n), Mₓ',
+                  'Таңдалған сақтандыру түріне нетто-тариф формуласын қолдану',
+                  'Жалпы K коэффициентін анықтау: K = 1 + Σ түзетулер',
+                  'Тарифті түзету және брутто-тарифті есептеу',
+                  'Жылдық, айлық және біржолғы сыйлықақыны есептеу',
+                  'Тәуекел деңгейін анықтау: K < 1.10 → Төмен, 1.10–1.25 → Орташа, 1.25–1.45 → Жоғары, ≥ 1.45 → Өте жоғары',
                 ].map((step, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xs font-bold">

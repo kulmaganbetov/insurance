@@ -63,7 +63,7 @@ export default function RiskGauge({ risk_score, risk_level }: RiskGaugeProps) {
 
   return (
     <div className="bg-[#1E293B] rounded-2xl p-6 flex flex-col items-center">
-      <h3 className="text-white text-lg font-semibold mb-4">Оценка риска</h3>
+      <h3 className="text-white text-lg font-semibold mb-4">Тәуекелді бағалау</h3>
       <svg viewBox="0 0 300 170" className="w-full max-w-[300px]">
         {/* Background arc */}
         <path
