@@ -108,7 +108,7 @@ export default function RootLayout({
             <button
               className="inline-flex md:hidden items-center justify-center rounded-lg p-2
                          text-gray-400 hover:bg-white/5 hover:text-white transition-colors"
-              aria-label="Меню"
+              aria-label="Мәзір"
               type="button"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">

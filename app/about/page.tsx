@@ -197,7 +197,7 @@ export default function AboutPage() {
               <div className="bg-[#0F172A] rounded-xl p-4 border border-slate-700/50">
                 <p className="text-slate-400 text-xs mb-1">Модель параметрлері</p>
                 <p className="text-slate-300 text-sm">
-                  Model: gpt-4o · Temperature: 0.1 · Response format: JSON · Промпт: ~2500 токенов
+                  Model: gpt-4o · Temperature: 0.1 · Response format: JSON · Промпт: ~2500 токен
                 </p>
               </div>
             </div>
