@@ -31,53 +31,52 @@ const SUGGESTED_QUESTIONS = [
     icon: Scale,
     title: 'ҚР заңнамасы',
     question: 'ҚР-да өмірді сақтандыруды қандай заң реттейді және негізгі баптары қандай?',
-    gradient: 'from-emerald-500/10 to-teal-500/10',
-    border: 'border-emerald-500/20',
-    iconColor: 'text-emerald-400',
+    tint: 'bg-emerald-50 hover:bg-emerald-100/70 border-emerald-200',
+    iconBg: 'bg-emerald-500/10',
+    iconColor: 'text-emerald-600',
   },
   {
     icon: TrendingUp,
     title: 'Салық шегерімі',
     question: 'Өмірді сақтандыру бойынша ЖТС салық шегерімін қалай алуға болады?',
-    gradient: 'from-blue-500/10 to-cyan-500/10',
-    border: 'border-blue-500/20',
-    iconColor: 'text-blue-400',
+    tint: 'bg-blue-50 hover:bg-blue-100/70 border-blue-200',
+    iconBg: 'bg-blue-500/10',
+    iconColor: 'text-blue-600',
   },
   {
     icon: Shield,
     title: 'Сақтандыру түрлері',
     question: 'Өмірді сақтандырудың қандай түрлері бар және олардың айырмашылығы қандай?',
-    gradient: 'from-purple-500/10 to-pink-500/10',
-    border: 'border-purple-500/20',
-    iconColor: 'text-purple-400',
+    tint: 'bg-purple-50 hover:bg-purple-100/70 border-purple-200',
+    iconBg: 'bg-purple-500/10',
+    iconColor: 'text-purple-600',
   },
   {
     icon: BookOpen,
     title: 'Тыныштық кезеңі',
     question: 'Сақтандыру шартынан қанша күн ішінде бас тартуға болады?',
-    gradient: 'from-yellow-500/10 to-orange-500/10',
-    border: 'border-yellow-500/20',
-    iconColor: 'text-yellow-400',
+    tint: 'bg-amber-50 hover:bg-amber-100/70 border-amber-200',
+    iconBg: 'bg-amber-500/10',
+    iconColor: 'text-amber-600',
   },
   {
     icon: HelpCircle,
     title: 'Сыйлықақы есептеу',
     question: 'Сақтандыру сыйлықақысы қалай есептеледі? Актуарлық формулаларды түсіндіріңіз.',
-    gradient: 'from-rose-500/10 to-red-500/10',
-    border: 'border-rose-500/20',
-    iconColor: 'text-rose-400',
+    tint: 'bg-rose-50 hover:bg-rose-100/70 border-rose-200',
+    iconBg: 'bg-rose-500/10',
+    iconColor: 'text-rose-600',
   },
   {
     icon: Sparkles,
     title: 'Тәуекел факторлары',
     question: 'Сақтандыру сыйлықақысына қандай факторлар әсер етеді?',
-    gradient: 'from-indigo-500/10 to-violet-500/10',
-    border: 'border-indigo-500/20',
-    iconColor: 'text-indigo-400',
+    tint: 'bg-indigo-50 hover:bg-indigo-100/70 border-indigo-200',
+    iconBg: 'bg-indigo-500/10',
+    iconColor: 'text-indigo-600',
   },
 ];
 
-// Minimal Markdown renderer (bold, italic, code, lists, headers, links, blockquotes)
 function renderMarkdown(text: string): string {
   const escape = (s: string) =>
     s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -102,19 +101,15 @@ function renderMarkdown(text: string): string {
 
   const inline = (s: string) => {
     let r = escape(s);
-    // links [text](url)
     r = r.replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
       '<a href="$2" class="text-emerald-600 underline underline-offset-2 hover:text-emerald-700">$1</a>'
     );
-    // inline code
     r = r.replace(
       /`([^`]+)`/g,
       '<code class="px-1.5 py-0.5 rounded bg-slate-100 text-emerald-700 text-[0.9em] font-mono">$1</code>'
     );
-    // bold
     r = r.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-slate-900 font-semibold">$1</strong>');
-    // italic
     r = r.replace(/\*([^*]+)\*/g, '<em class="text-slate-700">$1</em>');
     return r;
   };
@@ -164,7 +159,7 @@ function TypingDots() {
       {[0, 1, 2].map((i) => (
         <motion.span
           key={i}
-          className="w-2 h-2 rounded-full bg-emerald-400"
+          className="w-2 h-2 rounded-full bg-emerald-500"
           animate={{ opacity: [0.3, 1, 0.3], y: [0, -3, 0] }}
           transition={{
             duration: 1.2,
@@ -287,14 +282,14 @@ export default function ConsultantPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
             GPT-4o mini негізінде
           </div>
           <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-3">
             AI-<span className="gradient-text">кеңесші</span>
           </h1>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="text-slate-600 max-w-2xl mx-auto">
             Қазақстандағы сақтандыру, актуарлық есептеулер және ҚР заңнамасы бойынша сарапшы жауаптар
           </p>
         </motion.div>
@@ -304,21 +299,21 @@ export default function ConsultantPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="relative rounded-3xl overflow-hidden border border-slate-700/50 bg-gradient-to-b from-slate-900/80 to-slate-900/40 backdrop-blur-xl shadow-2xl shadow-emerald-500/5"
+          className="relative rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-xl shadow-slate-900/5"
         >
           {/* Header bar */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 bg-white/70">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="flex items-center gap-3">
               <div className="relative">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/30">
                   <Bot className="w-5 h-5 text-white" />
                 </div>
-                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white animate-pulse" />
+                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white animate-pulse" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-white font-semibold text-sm">LifeGuard AI</h3>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <h3 className="text-slate-900 font-semibold text-sm">LifeGuard AI</h3>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 border border-emerald-500/20">
                     Онлайн
                   </span>
                 </div>
@@ -329,7 +324,7 @@ export default function ConsultantPage() {
             {hasConversation && (
               <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-900 px-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+                className="flex items-center gap-1.5 text-xs text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors"
                 title="Жаңа сөйлесу"
               >
                 <MessageSquarePlus className="w-4 h-4" />
@@ -339,17 +334,17 @@ export default function ConsultantPage() {
           </div>
 
           {/* Messages area */}
-          <div className="min-h-[420px] max-h-[560px] overflow-y-auto px-4 md:px-6 py-6 space-y-6 scroll-smooth">
+          <div className="min-h-[420px] max-h-[560px] overflow-y-auto px-4 md:px-6 py-6 space-y-6 scroll-smooth bg-slate-50/50">
             {!hasConversation ? (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4 }}
-                className="flex flex-col items-center justify-center py-8"
+                className="flex flex-col items-center justify-center py-4"
               >
                 <div className="relative mb-6">
-                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-emerald-500/20 to-teal-600/20 flex items-center justify-center border border-emerald-500/30">
-                    <Bot className="w-10 h-10 text-emerald-400" />
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-emerald-500/15 to-teal-600/15 flex items-center justify-center border border-emerald-500/30 shadow-sm">
+                    <Bot className="w-10 h-10 text-emerald-600" />
                   </div>
                   <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/50">
                     <Sparkles className="w-3.5 h-3.5 text-white" />
@@ -357,7 +352,7 @@ export default function ConsultantPage() {
                 </div>
 
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Сәлеметсіз бе! 👋</h3>
-                <p className="text-slate-400 text-center max-w-md mb-8 text-sm">
+                <p className="text-slate-600 text-center max-w-md mb-8 text-sm leading-relaxed">
                   Мен — LifeGuard KZ AI-кеңесшісімін. Сақтандыру, актуарлық есептеулер және
                   ҚР заңнамасы бойынша сұрақтарыңызға жауап беремін.
                 </p>
@@ -374,17 +369,17 @@ export default function ConsultantPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + i * 0.05 }}
                         onClick={() => sendMessage(q.question)}
-                        className={`group relative overflow-hidden rounded-2xl p-4 text-left border ${q.border} bg-gradient-to-br ${q.gradient} hover:scale-[1.02] transition-all`}
+                        className={`group relative overflow-hidden rounded-2xl p-4 text-left border ${q.tint} hover:shadow-md hover:-translate-y-0.5 transition-all duration-200`}
                       >
                         <div className="flex items-start gap-3">
-                          <div className={`flex-shrink-0 w-9 h-9 rounded-xl bg-white/80 backdrop-blur flex items-center justify-center ${q.iconColor}`}>
+                          <div className={`flex-shrink-0 w-9 h-9 rounded-xl ${q.iconBg} flex items-center justify-center ${q.iconColor} ring-1 ring-inset ring-white/40`}>
                             <q.icon className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
-                            <h4 className="text-white font-semibold text-sm mb-1 group-hover:text-emerald-300 transition-colors">
+                            <h4 className="text-slate-900 font-semibold text-sm mb-1 group-hover:text-emerald-700 transition-colors">
                               {q.title}
                             </h4>
-                            <p className="text-xs text-slate-400 leading-snug line-clamp-2">
+                            <p className="text-xs text-slate-600 leading-snug line-clamp-2">
                               {q.question}
                             </p>
                           </div>
@@ -446,7 +441,7 @@ export default function ConsultantPage() {
                         {msg.role === 'assistant' && (
                           <button
                             onClick={() => handleCopy(msg.content, i)}
-                            className="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-emerald-400 transition-all"
+                            className="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-emerald-600 transition-all"
                             title="Көшіру"
                           >
                             {copiedIndex === i ? (
@@ -487,7 +482,7 @@ export default function ConsultantPage() {
           </div>
 
           {/* Input area */}
-          <div className="border-t border-slate-200 bg-white/70 px-4 py-4">
+          <div className="border-t border-slate-200 bg-white px-4 py-4">
             <form onSubmit={handleSubmit} className="flex items-end gap-2">
               <div className="flex-1 relative">
                 <textarea
@@ -498,10 +493,10 @@ export default function ConsultantPage() {
                   placeholder="Сұрағыңызды жазыңыз..."
                   rows={1}
                   disabled={loading}
-                  className="w-full resize-none rounded-2xl bg-slate-50 border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 px-4 py-3 pr-12 text-slate-900 placeholder:text-slate-400 text-sm outline-none transition-all disabled:opacity-50"
+                  className="w-full resize-none rounded-2xl bg-slate-50 border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 px-4 py-3 pr-14 text-slate-900 placeholder:text-slate-400 text-sm outline-none transition-all disabled:opacity-50"
                   style={{ minHeight: '48px', maxHeight: '160px' }}
                 />
-                <div className="absolute bottom-2 right-2 text-[10px] text-slate-400 pointer-events-none hidden md:block">
+                <div className="absolute bottom-2.5 right-3 text-[10px] text-slate-400 pointer-events-none hidden md:block">
                   Enter ↵
                 </div>
               </div>
